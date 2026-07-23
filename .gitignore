@@ -5,6 +5,10 @@
 /website/public/hot
 /website/public/storage
 /website/storage/*.key
+/website/storage/framework/cache/data/*
+/website/storage/framework/sessions/*
+/website/storage/framework/testing/*
+/website/storage/framework/views/*
 /website/vendor
 /website/node_modules
 /website/npm-debug.log
