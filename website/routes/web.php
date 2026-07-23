@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DisciplineController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,16 +38,11 @@ use Illuminate\Support\Facades\Route;
 // Shared public route definitions (Phase 3 will add all public pages here)
 // ---------------------------------------------------------------------------
 $publicRoutes = static function (): void {
-    // Placeholder home route — will be replaced in Phase 3
     Route::get('/', static fn () => view('welcome'))->name('home');
 
-    // Discipline detail — locale prefix + slug coexist cleanly:
-    //   /lv/disciplines/executive-presence → locale=lv (prefix), slug=executive-presence (param)
-    // Route::get('disciplines/{slug}', [DisciplineController::class, 'show'])
-    //     ->name('disciplines.show');
-    //
-    // Additional pages (disciplines, axio-method, case-studies, vision, contact, privacy)
-    // will be added here in Phase 3.
+    // Disciplines Pages
+    Route::get('disciplines', [DisciplineController::class, 'index'])->name('disciplines');
+    Route::get('disciplines/{slug}', [DisciplineController::class, 'show'])->name('disciplines.show');
 };
 
 // ---------------------------------------------------------------------------
