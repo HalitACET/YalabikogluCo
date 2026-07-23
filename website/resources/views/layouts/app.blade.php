@@ -73,7 +73,7 @@
             </nav>
 
             <!-- Language Switcher & Hamburger -->
-            <div class="flex items-center space-x-6">
+            <div class="flex items-center space-x-6 lg:ml-12">
                 <!-- Desktop Language Switcher -->
                 <div class="hidden md:flex items-center space-x-2 text-[10px] uppercase tracking-widest font-semibold">
                     @foreach(config('locales.supported', ['en' => 'English']) as $lang => $name)
