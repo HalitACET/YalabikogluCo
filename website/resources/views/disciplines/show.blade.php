@@ -32,7 +32,7 @@
     </div>
 
     <div class="relative z-10 max-w-7xl mx-auto w-full flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
-        <div>
+        <div class="relative z-10 max-w-xl">
             <div class="flex items-center space-x-3 mb-6 reveal-on-scroll">
                 <span class="status-dot"></span>
                 <span class="text-[10px] uppercase tracking-widest font-semibold text-bone/60">
@@ -42,13 +42,13 @@
             <h1 class="font-heading text-[clamp(32px,5vw,64px)] tracking-tight leading-[1.1] font-semibold text-bone mb-6 reveal-on-scroll">
                 {{ $discipline->translate()?->title }}
             </h1>
-            <p class="text-base text-body-text-invert leading-relaxed max-w-xl reveal-on-scroll">
+            <p class="text-base text-body-text-invert leading-relaxed reveal-on-scroll">
                 {{ $discipline->translate()?->dek }}
             </p>
         </div>
         
-        <!-- Oversized ghost numeral -->
-        <span class="font-heading text-[clamp(120px,20vw,280px)] font-bold text-bone/5 leading-none select-none tracking-tighter reveal-on-scroll absolute right-6 bottom-0 pointer-events-none">
+        <!-- Oversized ghost numeral (Repositioned to clear text block on mobile and desktop) -->
+        <span class="font-heading text-[clamp(90px,16vw,240px)] font-bold text-bone/5 leading-none select-none tracking-tighter reveal-on-scroll absolute right-6 top-10 md:top-auto md:bottom-0 md:right-12 pointer-events-none z-0">
             {{ $numeral }}
         </span>
     </div>
