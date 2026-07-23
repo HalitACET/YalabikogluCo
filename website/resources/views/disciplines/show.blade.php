@@ -126,16 +126,6 @@
     @endif
 </section>
 
-<!-- Closing CTA Block -->
-<section class="bg-ink text-bone py-20 px-6 md:px-12 text-center relative overflow-hidden">
-    <div class="max-w-4xl mx-auto reveal-on-scroll">
-        <p class="font-heading text-2xl md:text-3xl mb-8">
-            {{ __('Begin Your Executive Architecture Mandate') }}
-        </p>
-        <a href="{{ route('home') }}/contact" class="bg-bone text-ink text-xs uppercase tracking-widest font-bold px-8 py-4 hover:bg-ink hover:text-bone border border-bone transition-all duration-300 inline-block">
-            {{ __('Request Executive Briefing') }}
-        </a>
-    </div>
-</section>
+<x-closing-cta />
 
 @endsection
