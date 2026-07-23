@@ -1,0 +1,20 @@
+# Root .gitignore to manage both workspace root and sub-folders
+
+/website/.env
+/website/.env.backup
+/website/public/hot
+/website/public/storage
+/website/storage/*.key
+/website/vendor
+/website/node_modules
+/website/npm-debug.log
+/website/yarn-error.log
+/website/yarn-debug.log
+/website/.phpunit.result.cache
+/website/.vite
+/website/auth.json
+
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
