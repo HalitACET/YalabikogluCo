@@ -56,3 +56,35 @@ img:hover {
     opacity: 1;
     transform: translateY(0);
 }
+
+/* Custom pulsing status dot */
+@keyframes status-dot-pulse {
+    0%, 100% { opacity: 0.35; }
+    50% { opacity: 1; }
+}
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 9999px;
+    background-color: #10B981; /* Emerald-500 */
+    display: inline-block;
+}
+@media (prefers-reduced-motion: no-preference) {
+    .status-dot {
+        animation: status-dot-pulse 2s ease-in-out infinite;
+    }
+}
+
+/* Executive Profile Grid: below 900px single column, above 900px: 0.82fr and 1.18fr */
+.profile-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+@media (min-width: 900px) {
+    .profile-grid {
+        grid-template-columns: 0.82fr 1.18fr;
+        gap: 5rem;
+    }
+}

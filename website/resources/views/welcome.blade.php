@@ -22,46 +22,39 @@
         ->get();
 @endphp
 
-<!-- 1. HERO SECTION -->
-<section class="relative min-h-[90vh] flex items-center px-6 md:px-12 py-20 bg-bone border-b border-hairline">
-    <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        <!-- Hero Text -->
-        <div class="lg:col-span-7 flex flex-col justify-center">
-            <!-- Pulsing Availability Status -->
-            <div class="flex items-center space-x-3 mb-6 reveal-on-scroll">
-                <span class="relative flex h-2 w-2">
-                    <span class="motion-safe:animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                </span>
-                <span class="text-[10px] uppercase tracking-widest font-semibold text-grey">
-                    Available for Remote Coaching
-                </span>
-            </div>
-
-            <!-- Main Heading -->
-            <h1 class="font-heading text-[clamp(38px,6vw,84px)] tracking-tight leading-[1.05] font-semibold text-ink mb-8 reveal-on-scroll">
-                Transform the way you<br>communicate, lead<br>& grow
-            </h1>
-
-            <!-- Hero Action Buttons -->
-            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 reveal-on-scroll">
-                <a href="{{ route('home') }}/contact" class="bg-ink text-bone text-xs uppercase tracking-widest font-bold px-8 py-4 hover:bg-bone hover:text-ink border border-ink transition-all duration-300 text-center">
-                    {{ __('Request Executive Briefing') }}
-                </a>
-                <a href="{{ route('home') }}/axio-method" class="text-xs uppercase tracking-widest font-semibold hover:opacity-60 transition-opacity border-b border-ink py-2 text-center">
-                    Explore The AXIO Method™
-                </a>
-            </div>
+<!-- 1. HERO SECTION (Full-bleed Darkened B&W Background) -->
+<section class="relative min-h-[90vh] flex items-center px-6 md:px-12 py-24 bg-ink text-bone border-b border-hairline-invert overflow-hidden">
+    <!-- Background B&W Photo with Dark Overlay -->
+    <div class="absolute inset-0 z-0">
+        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=1600&q=80" 
+             alt="Executive Presence background" 
+             class="w-full h-full object-cover filter grayscale contrast-125" />
+        <div class="absolute inset-0 bg-ink/75 pointer-events-none"></div>
+    </div>
+    
+    <!-- Hero Overlaid Content -->
+    <div class="relative z-10 max-w-7xl mx-auto w-full">
+        <!-- Pulsing Availability Status -->
+        <div class="flex items-center space-x-3 mb-6 reveal-on-scroll">
+            <span class="status-dot"></span>
+            <span class="text-[10px] uppercase tracking-widest font-semibold text-bone/60">
+                Available for Remote Coaching
+            </span>
         </div>
 
-        <!-- Hero Image (Split Layout) -->
-        <div class="lg:col-span-5 reveal-on-scroll">
-            <div class="relative overflow-hidden aspect-[4/5] bg-ink">
-                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=1000&q=80" 
-                     alt="Executive Leadership Presence" 
-                     class="w-full h-full object-cover grayscale-img" />
-                <div class="absolute inset-0 bg-gradient-to-t from-ink/10 to-transparent pointer-events-none"></div>
-            </div>
+        <!-- Main Heading -->
+        <h1 class="font-heading text-[clamp(38px,6.2vw,84px)] tracking-tight leading-[1.05] font-semibold text-bone mb-8 reveal-on-scroll">
+            Transform the way you<br>communicate, lead<br>& grow
+        </h1>
+
+        <!-- Hero Action Buttons -->
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 reveal-on-scroll">
+            <a href="{{ route('home') }}/contact" class="bg-bone text-ink text-xs uppercase tracking-widest font-bold px-8 py-4 hover:bg-ink hover:text-bone border border-bone transition-all duration-300 text-center">
+                {{ __('Request Executive Briefing') }}
+            </a>
+            <a href="{{ route('home') }}/axio-method" class="text-xs uppercase tracking-widest font-semibold hover:opacity-60 transition-opacity border-b border-bone py-2 text-center text-bone">
+                Explore The AXIO Method™
+            </a>
         </div>
     </div>
 </section>
@@ -84,11 +77,11 @@
 </section>
 @endif
 
-<!-- 3. EXECUTIVE PROFILE SECTION -->
+<!-- 3. EXECUTIVE PROFILE SECTION (True 2-Column Grid Layout) -->
 <section class="border-b border-hairline py-24 px-6 md:px-12 bg-bone text-ink">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+    <div class="max-w-7xl mx-auto profile-grid">
         <!-- Profile Portrait -->
-        <div class="lg:col-span-5 reveal-on-scroll">
+        <div class="reveal-on-scroll">
             <div class="relative aspect-[3/4] overflow-hidden bg-ink">
                 <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80" 
                      alt="Efe Yalabikoglu" 
@@ -97,7 +90,7 @@
         </div>
 
         <!-- Biyografi ve Metin -->
-        <div class="lg:col-span-7 reveal-on-scroll flex flex-col justify-center space-y-6">
+        <div class="reveal-on-scroll flex flex-col justify-center space-y-6">
             <span class="text-[10px] uppercase tracking-widest font-bold text-grey">Advisory Profile</span>
             <h2 class="font-heading text-3xl md:text-4xl font-semibold tracking-tight">
                 Efe Yalabikoglu
@@ -119,11 +112,10 @@
 <!-- 4. DISCIPLINES TEASER SECTION -->
 <section class="border-b border-hairline py-24 px-6 md:px-12 bg-bone text-ink">
     <div class="max-w-7xl mx-auto">
-        <div class="flex justify-between items-end mb-16 reveal-on-scroll">
-            <div>
-                <span class="text-[10px] uppercase tracking-widest font-bold text-grey block mb-3">Expertise</span>
-                <h2 class="font-heading text-3xl md:text-4xl font-semibold tracking-tight">Core Disciplines</h2>
-            </div>
+        <div class="mb-16 reveal-on-scroll">
+            <h2 class="font-heading text-3xl md:text-4xl font-semibold tracking-tight">
+                Four Systems. One Communication Architecture.
+            </h2>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -131,7 +123,7 @@
             @foreach($disciplines as $discipline)
                 <div class="reveal-on-scroll border border-hairline p-8 flex flex-col justify-between min-h-[350px] bg-bone hover:border-ink transition-colors duration-300">
                     <div>
-                        <span class="text-[10px] text-grey font-mono block mb-6">0{{ $loop->iteration }} · DISC</span>
+                        <span class="text-[10px] text-grey font-mono block mb-6">0{{ $loop->iteration }}</span>
                         <h3 class="font-heading text-xl font-semibold mb-4 leading-snug">
                             {{ $discipline->translate()?->title }}
                         </h3>
@@ -150,17 +142,14 @@
             <!-- Static Teaser Card -->
             <div class="reveal-on-scroll border border-hairline p-8 flex flex-col justify-between min-h-[350px] bg-ink text-bone">
                 <div>
-                    <span class="text-[10px] text-grey uppercase tracking-widest font-semibold block mb-6">Complete Methodology</span>
+                    <span class="text-4xl lg:text-5xl font-heading text-grey/30 block mb-6 font-semibold">03·04</span>
                     <h3 class="font-heading text-xl font-semibold mb-4 leading-snug">
                         Two more disciplines shape the full method.
                     </h3>
-                    <p class="text-sm text-body-text-invert leading-relaxed font-sans">
-                        Our full architecture includes sovereign self-mastery, personal goals, and public media crisis communication strategies.
-                    </p>
                 </div>
                 <div class="pt-6">
                     <a href="{{ route('home') }}/disciplines" class="text-xs uppercase tracking-widest font-bold border-b border-bone pb-2 hover:opacity-75 transition-opacity">
-                        Explore All Disciplines →
+                        View All Disciplines →
                     </a>
                 </div>
             </div>
@@ -174,8 +163,9 @@
     <div class="max-w-7xl mx-auto">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 reveal-on-scroll gap-4">
             <div>
-                <span class="text-[10px] uppercase tracking-widest font-bold text-grey block mb-3">Case History</span>
-                <h2 class="font-heading text-3xl md:text-4xl font-semibold tracking-tight">Client Voices</h2>
+                <h2 class="font-heading text-3xl md:text-4xl font-semibold tracking-tight">
+                    Client Voices
+                </h2>
             </div>
             <a href="{{ route('home') }}/case-studies" class="text-xs uppercase tracking-widest font-bold border-b border-ink pb-1 hover:opacity-60 transition-opacity">
                 View Case Studies
