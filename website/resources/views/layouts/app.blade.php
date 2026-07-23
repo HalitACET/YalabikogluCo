@@ -53,22 +53,22 @@
             @endphp
             <nav class="hidden lg:flex items-center space-x-8 text-xs uppercase tracking-widest font-medium">
                 <a href="{{ route('home') }}" class="transition-opacity {{ $isHome ? 'opacity-55' : 'opacity-100 hover:opacity-55' }}">
-                    Home
+                    {{ __('Home') }}
                 </a>
                 <a href="{{ route('home') }}/disciplines" class="transition-opacity {{ $isDisciplines ? 'opacity-55' : 'opacity-100 hover:opacity-55' }}">
-                    Disciplines
+                    {{ __('Disciplines') }}
                 </a>
                 <a href="{{ route('home') }}/axio-method" class="transition-opacity {{ $isAxio ? 'opacity-55' : 'opacity-100 hover:opacity-55' }}">
-                    AXIO Method™
+                    {{ __('AXIO Method') }}
                 </a>
                 <a href="{{ route('home') }}/case-studies" class="transition-opacity {{ $isCaseStudies ? 'opacity-55' : 'opacity-100 hover:opacity-55' }}">
-                    Case History
+                    {{ __('Case Studies') }}
                 </a>
                 <a href="{{ route('home') }}/vision" class="transition-opacity {{ $isVision ? 'opacity-55' : 'opacity-100 hover:opacity-55' }}">
-                    Vision & Values
+                    {{ __('Vision & Values') }}
                 </a>
                 <a href="{{ route('home') }}/contact" class="transition-opacity {{ $isContact ? 'opacity-55' : 'opacity-100 hover:opacity-55' }}">
-                    Contact
+                    {{ __('Contact') }}
                 </a>
             </nav>
 
@@ -79,7 +79,7 @@
                     @foreach(config('locales.supported', ['en' => 'English']) as $lang => $name)
                         <a href="{{ app(\App\Support\LocaleUrl::class)->for($lang) }}" 
                            class="transition-opacity {{ $currentLocale === $lang ? 'opacity-100' : 'opacity-40 hover:opacity-100' }}">
-                            {{ $lang }}
+                            {{ __($name) }}
                         </a>
                         @if(!$loop->last)<span class="opacity-20">/</span>@endif
                     @endforeach
@@ -112,12 +112,12 @@
             style="display: none;"
         >
             <nav class="flex flex-col space-y-6 text-2xl font-heading tracking-wide">
-                <a @click="menuOpen = false" href="{{ route('home') }}" class="hover:opacity-75 transition-opacity">Home</a>
-                <a @click="menuOpen = false" href="{{ route('home') }}/disciplines" class="hover:opacity-75 transition-opacity">Disciplines</a>
-                <a @click="menuOpen = false" href="{{ route('home') }}/axio-method" class="hover:opacity-75 transition-opacity">AXIO Method™</a>
-                <a @click="menuOpen = false" href="{{ route('home') }}/case-studies" class="hover:opacity-75 transition-opacity">Case History</a>
-                <a @click="menuOpen = false" href="{{ route('home') }}/vision" class="hover:opacity-75 transition-opacity">Vision & Values</a>
-                <a @click="menuOpen = false" href="{{ route('home') }}/contact" class="hover:opacity-75 transition-opacity">Contact</a>
+                <a @click="menuOpen = false" href="{{ route('home') }}" class="hover:opacity-75 transition-opacity">{{ __('Home') }}</a>
+                <a @click="menuOpen = false" href="{{ route('home') }}/disciplines" class="hover:opacity-75 transition-opacity">{{ __('Disciplines') }}</a>
+                <a @click="menuOpen = false" href="{{ route('home') }}/axio-method" class="hover:opacity-75 transition-opacity">{{ __('AXIO Method') }}</a>
+                <a @click="menuOpen = false" href="{{ route('home') }}/case-studies" class="hover:opacity-75 transition-opacity">{{ __('Case Studies') }}</a>
+                <a @click="menuOpen = false" href="{{ route('home') }}/vision" class="hover:opacity-75 transition-opacity">{{ __('Vision & Values') }}</a>
+                <a @click="menuOpen = false" href="{{ route('home') }}/contact" class="hover:opacity-75 transition-opacity">{{ __('Contact') }}</a>
             </nav>
 
             <div class="border-t border-hairline-invert pt-6 flex flex-col space-y-4">
@@ -126,7 +126,7 @@
                     @foreach(config('locales.supported', ['en' => 'English']) as $lang => $name)
                         <a @click="menuOpen = false" href="{{ app(\App\Support\LocaleUrl::class)->for($lang) }}" 
                            class="{{ $currentLocale === $lang ? 'text-bone' : 'text-grey hover:text-bone' }}">
-                            {{ $name }}
+                            {{ __($name) }}
                         </a>
                     @endforeach
                 </div>
@@ -149,7 +149,7 @@
             <div class="md:col-span-2 flex flex-col space-y-4">
                 <span class="font-heading text-xl uppercase tracking-wider font-semibold">Yalabikoglu & Co.</span>
                 <p class="text-xs text-grey max-w-sm leading-relaxed uppercase tracking-wider">
-                    Sovereignty of Self. Governance of Circumstance.
+                    {{ __('Strategic Advisory & Executive Presence') }}
                 </p>
             </div>
 
@@ -160,43 +160,49 @@
                     'home' => 'Home',
                     'disciplines' => 'Disciplines',
                     'axio-method' => 'AXIO Method',
-                    'case-studies' => 'Case History',
+                    'case-studies' => 'Case Studies',
                     'vision' => 'Vision & Values',
                     'contact' => 'Contact',
                     'privacy' => 'Privacy Policy'
                 ];
             @endphp
             <div class="flex flex-col space-y-3 text-xs uppercase tracking-widest font-medium">
-                <span class="text-grey text-[10px] font-bold tracking-widest mb-2">Navigation</span>
+                <span class="text-grey text-[10px] font-bold tracking-widest mb-2">{{ __('Navigation') }}</span>
                 @foreach($dbPages as $dbPage)
                     @php
-                        $title = $slugTitles[$dbPage->slug] ?? ucfirst(str_replace('-', ' ', $dbPage->slug));
+                        $key = $slugTitles[$dbPage->slug] ?? ucfirst(str_replace('-', ' ', $dbPage->slug));
                         // Home slug is '/', others are relative
                         $urlPath = $dbPage->slug === 'home' ? '' : '/' . $dbPage->slug;
                     @endphp
                     <a href="{{ route('home') }}{{ $urlPath }}" class="hover:text-grey transition-colors">
-                        {{ $title }}
+                        {{ __($key) }}
                     </a>
                 @endforeach
             </div>
 
-            <!-- Info & Languages -->
-            <div class="flex flex-col space-y-4 text-xs">
-                <span class="text-grey text-[10px] font-bold uppercase tracking-widest">Language</span>
-                <div class="flex flex-wrap gap-x-3 gap-y-1 font-semibold uppercase tracking-wider">
-                    @foreach(config('locales.supported', ['en' => 'English']) as $lang => $name)
-                        <a href="{{ app(\App\Support\LocaleUrl::class)->for($lang) }}" 
-                           class="transition-opacity {{ $currentLocale === $lang ? 'opacity-100' : 'opacity-40 hover:opacity-100' }}">
-                            {{ $lang }}
-                        </a>
-                        @if(!$loop->last)<span class="opacity-20">/</span>@endif
-                    @endforeach
+            <!-- Connect & Language Column -->
+            <div class="flex flex-col space-y-6">
+                <!-- Connect -->
+                <div class="flex flex-col space-y-3 text-xs uppercase tracking-widest font-medium">
+                    <span class="text-grey text-[10px] font-bold tracking-widest mb-2">{{ __('Connect') }}</span>
+                    <a href="https://linkedin.com/company/yalabikogluandco" target="_blank" rel="noopener noreferrer" class="hover:text-grey transition-colors">LinkedIn</a>
+                    <a href="https://medium.com/@efeyalabikoglu" target="_blank" rel="noopener noreferrer" class="hover:text-grey transition-colors">Medium</a>
+                    <a href="https://instagram.com/yalabikogluco" target="_blank" rel="noopener noreferrer" class="hover:text-grey transition-colors">Instagram</a>
                 </div>
 
-                <span class="text-grey text-[10px] font-bold uppercase tracking-widest pt-4">Global Reach</span>
-                <span class="text-grey leading-relaxed text-[11px] uppercase tracking-wider">
-                    Serving C-Suite leaders globally.
-                </span>
+                <!-- Language -->
+                <div class="flex flex-col space-y-3 text-xs uppercase tracking-widest font-medium">
+                    <span class="text-grey text-[10px] font-bold tracking-widest mb-1">{{ __('Language') }}</span>
+                    <div class="flex flex-wrap gap-x-3 gap-y-1 font-semibold uppercase tracking-wider">
+                        @foreach(config('locales.supported', ['en' => 'English']) as $lang => $name)
+                            <a href="{{ app(\App\Support\LocaleUrl::class)->for($lang) }}" 
+                               class="transition-opacity {{ $currentLocale === $lang ? 'opacity-100' : 'opacity-40 hover:opacity-100' }}">
+                                {{ __($name) }}
+                            </a>
+                            @if(!$loop->last)<span class="opacity-20">/</span>@endif
+                        @endforeach
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -205,8 +211,8 @@
                 © {{ date('Y') }} Yalabikoglu & Co. All rights reserved.
             </div>
             <div class="mt-2 md:mt-0 flex space-x-6">
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="hover:text-bone transition-colors">LinkedIn</a>
-                <a href="{{ route('home') }}/privacy" class="hover:text-bone transition-colors">Privacy Policy</a>
+                <a href="https://linkedin.com/company/yalabikogluandco" target="_blank" rel="noopener noreferrer" class="hover:text-bone transition-colors">LinkedIn</a>
+                <a href="{{ route('home') }}/privacy" class="hover:text-bone transition-colors">{{ __('Privacy Policy') }}</a>
             </div>
         </div>
     </footer>
@@ -228,14 +234,14 @@
         <div class="flex items-center space-x-4">
             <span class="w-2 h-2 bg-bone animate-pulse"></span>
             <span class="text-xs uppercase tracking-widest font-semibold leading-none">
-                Begin Your Executive Architecture Mandate
+                {{ __('Request Executive Briefing') }}
             </span>
         </div>
         <a 
             href="{{ route('home') }}/contact" 
             class="bg-bone text-ink text-[10px] uppercase tracking-widest font-bold px-6 py-2.5 hover:bg-ink hover:text-bone border border-bone transition-all duration-300 text-center w-full sm:w-auto"
         >
-            Initiate Contact
+            {{ __('Request Executive Briefing') }}
         </a>
     </div>
 
