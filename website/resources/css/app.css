@@ -66,7 +66,7 @@ img:hover {
     width: 8px;
     height: 8px;
     border-radius: 9999px;
-    background-color: #10B981; /* Emerald-500 */
+    background-color: currentColor;
     display: inline-block;
 }
 @media (prefers-reduced-motion: no-preference) {

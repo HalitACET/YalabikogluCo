@@ -34,9 +34,9 @@
         :class="scrolled ? 'bg-ink text-bone py-4 border-b border-hairline-invert' : 'bg-transparent text-ink py-6'"
         class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out border-b border-transparent"
     >
-        <div class="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
+        <div class="w-full px-6 md:px-12 flex justify-between items-center">
             <!-- Wordmark -->
-            <a href="{{ route('home') }}" class="font-heading text-lg md:text-xl tracking-wider font-semibold uppercase transition-colors">
+            <a href="{{ route('home') }}" class="font-heading text-lg md:text-xl tracking-wider font-semibold uppercase transition-colors whitespace-nowrap">
                 Yalabikoglu & Co.
             </a>
 
@@ -52,22 +52,22 @@
                 $isContact = request()->is('contact*') || request()->is('*/contact*');
             @endphp
             <nav class="hidden lg:flex items-center space-x-8 text-xs uppercase tracking-widest font-medium">
-                <a href="{{ route('home') }}" class="transition-opacity {{ $isHome ? 'opacity-55' : 'opacity-100 hover:opacity-55' }}">
+                <a href="{{ route('home') }}" class="transition-opacity whitespace-nowrap {{ $isHome ? 'opacity-55' : 'opacity-100 hover:opacity-55' }}">
                     {{ __('Home') }}
                 </a>
-                <a href="{{ route('home') }}/disciplines" class="transition-opacity {{ $isDisciplines ? 'opacity-55' : 'opacity-100 hover:opacity-55' }}">
+                <a href="{{ route('home') }}/disciplines" class="transition-opacity whitespace-nowrap {{ $isDisciplines ? 'opacity-55' : 'opacity-100 hover:opacity-55' }}">
                     {{ __('Disciplines') }}
                 </a>
-                <a href="{{ route('home') }}/axio-method" class="transition-opacity {{ $isAxio ? 'opacity-55' : 'opacity-100 hover:opacity-55' }}">
+                <a href="{{ route('home') }}/axio-method" class="transition-opacity whitespace-nowrap {{ $isAxio ? 'opacity-55' : 'opacity-100 hover:opacity-55' }}">
                     {{ __('AXIO Method') }}
                 </a>
-                <a href="{{ route('home') }}/case-studies" class="transition-opacity {{ $isCaseStudies ? 'opacity-55' : 'opacity-100 hover:opacity-55' }}">
+                <a href="{{ route('home') }}/case-studies" class="transition-opacity whitespace-nowrap {{ $isCaseStudies ? 'opacity-55' : 'opacity-100 hover:opacity-55' }}">
                     {{ __('Case Studies') }}
                 </a>
-                <a href="{{ route('home') }}/vision" class="transition-opacity {{ $isVision ? 'opacity-55' : 'opacity-100 hover:opacity-55' }}">
+                <a href="{{ route('home') }}/vision" class="transition-opacity whitespace-nowrap {{ $isVision ? 'opacity-55' : 'opacity-100 hover:opacity-55' }}">
                     {{ __('Vision & Values') }}
                 </a>
-                <a href="{{ route('home') }}/contact" class="transition-opacity {{ $isContact ? 'opacity-55' : 'opacity-100 hover:opacity-55' }}">
+                <a href="{{ route('home') }}/contact" class="transition-opacity whitespace-nowrap {{ $isContact ? 'opacity-55' : 'opacity-100 hover:opacity-55' }}">
                     {{ __('Contact') }}
                 </a>
             </nav>
@@ -78,7 +78,7 @@
                 <div class="hidden md:flex items-center space-x-2 text-[10px] uppercase tracking-widest font-semibold">
                     @foreach(config('locales.supported', ['en' => 'English']) as $lang => $name)
                         <a href="{{ app(\App\Support\LocaleUrl::class)->for($lang) }}" 
-                           class="transition-opacity {{ $currentLocale === $lang ? 'opacity-100' : 'opacity-40 hover:opacity-100' }}">
+                           class="transition-opacity whitespace-nowrap {{ $currentLocale === $lang ? 'opacity-100' : 'opacity-40 hover:opacity-100' }}">
                             {{ __($name) }}
                         </a>
                         @if(!$loop->last)<span class="opacity-20">/</span>@endif

@@ -102,9 +102,6 @@
             <p class="text-base text-body-text leading-relaxed font-sans max-w-xl">
                 Efe Yalabikoglu is an executive presence and communication positioning advisor. Grounded in behavioural research and institutional communication strategy, he architectures the verbal axiology, non-verbal calibration, and leadership presence of founders, public figures, and C-Suite executives globally. His practice translates communication philosophy into empirical executive sovereignty.
             </p>
-            <p class="text-sm text-grey italic max-w-xl font-heading">
-                "Leadership is not just what you communicate. It is the alignment of your presence, your actions, and your underlying core values."
-            </p>
         </div>
     </div>
 </section>
@@ -157,6 +154,18 @@
     </div>
 </section>
 
+<!-- PHILOSOPHY QUOTE SECTION (Dark Ground, Large Serif) -->
+<section class="bg-ink text-bone py-24 px-6 md:px-12 border-b border-hairline-invert text-center relative overflow-hidden">
+    <div class="max-w-4xl mx-auto reveal-on-scroll">
+        <p class="font-heading text-[clamp(24px,3.5vw,36px)] leading-relaxed mb-8">
+            "The most powerful lever in business is not your product — it is the precision of the communication architecture behind it."
+        </p>
+        <span class="text-xs uppercase tracking-widest text-grey font-semibold">
+            — Efe Yalabıkoğlu
+        </span>
+    </div>
+</section>
+
 <!-- 5. CLIENT VOICES (TESTIMONIALS) SECTION -->
 @if($testimonials->isNotEmpty())
 <section class="py-24 px-6 md:px-12 bg-bone text-ink">
@@ -168,7 +177,7 @@
                 </h2>
             </div>
             <a href="{{ route('home') }}/case-studies" class="text-xs uppercase tracking-widest font-bold border-b border-ink pb-1 hover:opacity-60 transition-opacity">
-                View Case Studies
+                View Full Case Studies →
             </a>
         </div>
 
