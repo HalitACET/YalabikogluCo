@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DisciplineController;
+use App\Http\Controllers\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,11 @@ $publicRoutes = static function (): void {
     // Disciplines Pages
     Route::get('disciplines', [DisciplineController::class, 'index'])->name('disciplines');
     Route::get('disciplines/{slug}', [DisciplineController::class, 'show'])->name('disciplines.show');
+
+    // AXIO, Vision, Case Studies
+    Route::get('axio-method', [PageController::class, 'axioMethod'])->name('axio-method');
+    Route::get('vision', [PageController::class, 'vision'])->name('vision');
+    Route::get('case-studies', [PageController::class, 'caseStudies'])->name('case-studies');
 };
 
 // ---------------------------------------------------------------------------
