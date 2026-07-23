@@ -47,10 +47,12 @@
             </p>
         </div>
         
-        <!-- Oversized ghost numeral (Repositioned to clear text block on mobile and desktop) -->
-        <span class="font-heading text-[clamp(90px,16vw,240px)] font-bold text-bone/5 leading-none select-none tracking-tighter reveal-on-scroll absolute right-6 top-10 md:top-auto md:bottom-0 md:right-12 pointer-events-none z-0">
-            {{ $numeral }}
-        </span>
+        <!-- Oversized ghost numeral (Flows below text on mobile to prevent overlap, absolute on desktop) -->
+        <div class="w-full md:w-auto flex justify-end md:block mt-6 md:mt-0 select-none z-0">
+            <span class="font-heading text-[clamp(120px,20vw,280px)] font-bold text-bone/5 leading-none select-none tracking-tighter reveal-on-scroll md:absolute md:right-12 md:bottom-0 pointer-events-none">
+                {{ $numeral }}
+            </span>
+        </div>
     </div>
 </section>
 
