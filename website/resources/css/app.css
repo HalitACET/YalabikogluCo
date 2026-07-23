@@ -1,9 +1,58 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    /* Brand Colors */
+    --color-ink: #0A0A0A;
+    --color-bone: #F4F2ED;
+    --color-grey: #86847E;
+    
+    /* Semantic Colors */
+    --color-hairline: rgba(10, 10, 10, 0.1);
+    --color-hairline-invert: rgba(244, 242, 237, 0.15);
+    --color-body-text: rgba(10, 10, 10, 0.8);
+    --color-body-text-invert: rgba(244, 242, 237, 0.85);
+
+    /* Typography */
+    --font-heading: 'Playfair Display', serif;
+    --font-sans: 'IBM Plex Sans', sans-serif;
+
+    /* Border Radius: 0 globally */
+    --radius-sm: 0px;
+    --radius-md: 0px;
+    --radius-lg: 0px;
+    --radius-xl: 0px;
+    --radius-2xl: 0px;
+    --radius-3xl: 0px;
+    --radius-full: 0px;
+}
+
+/* Custom global overrides */
+body {
+    background-color: var(--color-bone);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+}
+
+/* Global Grayscale filter for all images */
+img {
+    filter: grayscale(100%);
+    transition: filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+img:hover {
+    filter: grayscale(0%);
+}
+
+/* Scroll Reveal classes */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
 }

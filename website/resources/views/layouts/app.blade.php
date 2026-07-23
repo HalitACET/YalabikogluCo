@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="{{ app()->getLocale() }}" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@yield('title', 'Yalabikoglu & Co. — Executive Communication Axiology')</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="@yield('meta_description', 'Premium executive presence and communication positioning advisory.')">
+
+    <!-- SEO hreflang tags -->
+    @hreflang
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- CSS & JS Assets -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body class="bg-bone text-ink antialiased min-h-screen flex flex-col selection:bg-ink selection:text-bone">
+
+    <!-- Navigation Header -->
+    <header 
+        x-data="{ 
+            scrolled: false, 
+            menuOpen: false 
+        }"
+        @scroll.window="scrolled = window.scrollY > 50"
+        :class="scrolled ? 'bg-ink text-bone py-4 border-b border-hairline-invert' : 'bg-transparent text-ink py-6'"
+        class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out border-b border-transparent"
+    >
+        <div class="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
+            <!-- Wordmark -->
+            <a href="{{ route('home') }}" class="font-heading text-lg md:text-xl tracking-wider font-semibold uppercase transition-colors">
+                Yalabikoglu & Co.
+            </a>
+
+            <!-- Desktop Navigation -->
+            @php
+                $currentLocale = app()->getLocale();
+                // Rota aktiflik kontrolleri
+                $isHome = request()->routeIs('home') || request()->routeIs('*.home');
+                $isDisciplines = request()->is('disciplines*') || request()->is('*/disciplines*');
+                $isAxio = request()->is('axio-method*') || request()->is('*/axio-method*');
+                $isCaseStudies = request()->is('case-studies*') || request()->is('*/case-studies*');
+                $isVision = request()->is('vision*') || request()->is('*/vision*');
+                $isContact = request()->is('contact*') || request()->is('*/contact*');
+            @endphp
+            <nav class="hidden lg:flex items-center space-x-8 text-xs uppercase tracking-widest font-medium">
+                <a href="{{ route('home') }}" class="transition-opacity {{ $isHome ? 'opacity-55' : 'opacity-100 hover:opacity-55' }}">
+                    Home
+                </a>
+                <a href="{{ route('home') }}/disciplines" class="transition-opacity {{ $isDisciplines ? 'opacity-55' : 'opacity-100 hover:opacity-55' }}">
+                    Disciplines
+                </a>
+                <a href="{{ route('home') }}/axio-method" class="transition-opacity {{ $isAxio ? 'opacity-55' : 'opacity-100 hover:opacity-55' }}">
+                    AXIO Method™
+                </a>
+                <a href="{{ route('home') }}/case-studies" class="transition-opacity {{ $isCaseStudies ? 'opacity-55' : 'opacity-100 hover:opacity-55' }}">
+                    Case History
+                </a>
+                <a href="{{ route('home') }}/vision" class="transition-opacity {{ $isVision ? 'opacity-55' : 'opacity-100 hover:opacity-55' }}">
+                    Vision & Values
+                </a>
+                <a href="{{ route('home') }}/contact" class="transition-opacity {{ $isContact ? 'opacity-55' : 'opacity-100 hover:opacity-55' }}">
+                    Contact
+                </a>
+            </nav>
+
+            <!-- Language Switcher & Hamburger -->
+            <div class="flex items-center space-x-6">
+                <!-- Desktop Language Switcher -->
+                <div class="hidden md:flex items-center space-x-2 text-[10px] uppercase tracking-widest font-semibold">
+                    @foreach(config('locales.supported', ['en' => 'English']) as $lang => $name)
+                        <a href="{{ app(\App\Support\LocaleUrl::class)->for($lang) }}" 
+                           class="transition-opacity {{ $currentLocale === $lang ? 'opacity-100' : 'opacity-40 hover:opacity-100' }}">
+                            {{ $lang }}
+                        </a>
+                        @if(!$loop->last)<span class="opacity-20">/</span>@endif
+                    @endforeach
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button 
+                    @click="menuOpen = !menuOpen" 
+                    class="lg:hidden p-1 focus:outline-none"
+                    aria-label="Toggle menu"
+                >
+                    <svg class="w-6 h-6 current-color" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path x-show="!menuOpen" stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
+                        <path x-show="menuOpen" style="display: none;" stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Full-Screen Mobile Menu Overlay -->
+        <div 
+            x-show="menuOpen" 
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 translate-y-4"
+            x-transition:enter-end="opacity-100 translate-y-0"
+            x-transition:leave="transition ease-in duration-200"
+            x-transition:leave-start="opacity-100 translate-y-0"
+            x-transition:leave-end="opacity-0 translate-y-4"
+            class="fixed inset-0 z-40 bg-ink text-bone flex flex-col justify-between p-8 pt-24 lg:hidden"
+            style="display: none;"
+        >
+            <nav class="flex flex-col space-y-6 text-2xl font-heading tracking-wide">
+                <a @click="menuOpen = false" href="{{ route('home') }}" class="hover:opacity-75 transition-opacity">Home</a>
+                <a @click="menuOpen = false" href="{{ route('home') }}/disciplines" class="hover:opacity-75 transition-opacity">Disciplines</a>
+                <a @click="menuOpen = false" href="{{ route('home') }}/axio-method" class="hover:opacity-75 transition-opacity">AXIO Method™</a>
+                <a @click="menuOpen = false" href="{{ route('home') }}/case-studies" class="hover:opacity-75 transition-opacity">Case History</a>
+                <a @click="menuOpen = false" href="{{ route('home') }}/vision" class="hover:opacity-75 transition-opacity">Vision & Values</a>
+                <a @click="menuOpen = false" href="{{ route('home') }}/contact" class="hover:opacity-75 transition-opacity">Contact</a>
+            </nav>
+
+            <div class="border-t border-hairline-invert pt-6 flex flex-col space-y-4">
+                <!-- Mobile Language Selector -->
+                <div class="flex space-x-4 text-xs tracking-widest font-semibold uppercase">
+                    @foreach(config('locales.supported', ['en' => 'English']) as $lang => $name)
+                        <a @click="menuOpen = false" href="{{ app(\App\Support\LocaleUrl::class)->for($lang) }}" 
+                           class="{{ $currentLocale === $lang ? 'text-bone' : 'text-grey hover:text-bone' }}">
+                            {{ $name }}
+                        </a>
+                    @endforeach
+                </div>
+                <div class="text-[10px] text-grey uppercase tracking-widest">
+                    Yalabikoglu & Co. © {{ date('Y') }}
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow pt-24">
+        @yield('content')
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-ink text-bone border-t border-hairline-invert py-16 px-6 md:px-12 mt-auto">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+            <!-- Brand Column -->
+            <div class="md:col-span-2 flex flex-col space-y-4">
+                <span class="font-heading text-xl uppercase tracking-wider font-semibold">Yalabikoglu & Co.</span>
+                <p class="text-xs text-grey max-w-sm leading-relaxed uppercase tracking-wider">
+                    Sovereignty of Self. Governance of Circumstance.
+                </p>
+            </div>
+
+            <!-- Navigation Links (Database-Driven) -->
+            @php
+                $dbPages = \App\Models\Page::all();
+                $slugTitles = [
+                    'home' => 'Home',
+                    'disciplines' => 'Disciplines',
+                    'axio-method' => 'AXIO Method',
+                    'case-studies' => 'Case History',
+                    'vision' => 'Vision & Values',
+                    'contact' => 'Contact',
+                    'privacy' => 'Privacy Policy'
+                ];
+            @endphp
+            <div class="flex flex-col space-y-3 text-xs uppercase tracking-widest font-medium">
+                <span class="text-grey text-[10px] font-bold tracking-widest mb-2">Navigation</span>
+                @foreach($dbPages as $dbPage)
+                    @php
+                        $title = $slugTitles[$dbPage->slug] ?? ucfirst(str_replace('-', ' ', $dbPage->slug));
+                        // Home slug is '/', others are relative
+                        $urlPath = $dbPage->slug === 'home' ? '' : '/' . $dbPage->slug;
+                    @endphp
+                    <a href="{{ route('home') }}{{ $urlPath }}" class="hover:text-grey transition-colors">
+                        {{ $title }}
+                    </a>
+                @endforeach
+            </div>
+
+            <!-- Info & Languages -->
+            <div class="flex flex-col space-y-4 text-xs">
+                <span class="text-grey text-[10px] font-bold uppercase tracking-widest">Language</span>
+                <div class="flex flex-wrap gap-x-3 gap-y-1 font-semibold uppercase tracking-wider">
+                    @foreach(config('locales.supported', ['en' => 'English']) as $lang => $name)
+                        <a href="{{ app(\App\Support\LocaleUrl::class)->for($lang) }}" 
+                           class="transition-opacity {{ $currentLocale === $lang ? 'opacity-100' : 'opacity-40 hover:opacity-100' }}">
+                            {{ $lang }}
+                        </a>
+                        @if(!$loop->last)<span class="opacity-20">/</span>@endif
+                    @endforeach
+                </div>
+
+                <span class="text-grey text-[10px] font-bold uppercase tracking-widest pt-4">Global Reach</span>
+                <span class="text-grey leading-relaxed text-[11px] uppercase tracking-wider">
+                    Serving C-Suite leaders globally.
+                </span>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto border-t border-hairline-invert mt-12 pt-6 flex flex-col md:flex-row justify-between items-center text-[10px] text-grey uppercase tracking-widest">
+            <div>
+                © {{ date('Y') }} Yalabikoglu & Co. All rights reserved.
+            </div>
+            <div class="mt-2 md:mt-0 flex space-x-6">
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="hover:text-bone transition-colors">LinkedIn</a>
+                <a href="{{ route('home') }}/privacy" class="hover:text-bone transition-colors">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Sticky Conversion Bar -->
+    <div 
+        x-data="{ showBar: false }"
+        @scroll.window="showBar = window.scrollY > (window.innerHeight * 0.85)"
+        x-show="showBar"
+        x-transition:enter="transition ease-out duration-500 transform"
+        x-transition:enter-start="translate-y-full"
+        x-transition:enter-end="translate-y-0"
+        x-transition:leave="transition ease-in duration-300 transform"
+        x-transition:leave-start="translate-y-0"
+        x-transition:leave-end="translate-y-full"
+        class="fixed bottom-0 left-0 right-0 z-40 bg-ink text-bone border-t border-hairline-invert py-4 px-6 md:px-12 flex flex-col sm:flex-row justify-between items-center gap-4 shadow-2xl"
+        style="display: none;"
+    >
+        <div class="flex items-center space-x-4">
+            <span class="w-2 h-2 bg-bone animate-pulse"></span>
+            <span class="text-xs uppercase tracking-widest font-semibold leading-none">
+                Begin Your Executive Architecture Mandate
+            </span>
+        </div>
+        <a 
+            href="{{ route('home') }}/contact" 
+            class="bg-bone text-ink text-[10px] uppercase tracking-widest font-bold px-6 py-2.5 hover:bg-ink hover:text-bone border border-bone transition-all duration-300 text-center w-full sm:w-auto"
+        >
+            Initiate Contact
+        </a>
+    </div>
+
+    <!-- Scroll Reveal JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('reveal-visible');
+                    }
+                });
+            }, { 
+                threshold: 0.05,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
