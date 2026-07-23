@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-#[Fillable(['person_name', 'role', 'city', 'placement', 'sort_order', 'is_published'])]
+#[Fillable(['person_name', 'role', 'city', 'placement', 'sort_order', 'is_published', 'is_featured'])]
 class Testimonial extends Model implements HasMedia
 {
     use HasTranslations, InteractsWithMedia;
@@ -17,6 +17,7 @@ class Testimonial extends Model implements HasMedia
     {
         return [
             'is_published' => 'boolean',
+            'is_featured' => 'boolean',
             'sort_order' => 'integer',
         ];
     }

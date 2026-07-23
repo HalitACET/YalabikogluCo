@@ -22,6 +22,7 @@ class TestimonialsTable
                 TextColumn::make('placement')->sortable(),
                 TextColumn::make('sort_order')->sortable(),
                 ToggleColumn::make('is_published'),
+                ToggleColumn::make('is_featured'),
                 TextColumn::make('created_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([

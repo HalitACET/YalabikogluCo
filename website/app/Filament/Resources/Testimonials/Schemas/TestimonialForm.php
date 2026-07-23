@@ -33,6 +33,8 @@ class TestimonialForm
                     ->required(),
                 Toggle::make('is_published')
                     ->default(false),
+                Toggle::make('is_featured')
+                    ->default(false),
                 Repeater::make('translations')
                     ->relationship('translations')
                     ->schema([

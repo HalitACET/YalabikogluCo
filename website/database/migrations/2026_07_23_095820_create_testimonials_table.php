@@ -19,6 +19,7 @@ return new class extends Migration
             $table->enum('placement', ['home', 'case_studies', 'both'])->default('home');
             $table->integer('sort_order')->default(0);
             $table->boolean('is_published')->default(false);
+            $table->boolean('is_featured')->default(false);
             $table->timestamps();
         });
 

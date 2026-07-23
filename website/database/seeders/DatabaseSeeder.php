@@ -20,128 +20,312 @@ class DatabaseSeeder extends Seeder
         // 1. Admin Kullanıcısını Oluştur
         $this->call(AdminUserSeeder::class);
 
-        // 2. Disciplines (Disiplinler / Hizmetler)
+        // 2. Disciplines (4, in this order)
         $d1 = Discipline::create([
-            'slug' => 'mergers-and-acquisitions',
+            'slug' => 'executive-presence',
             'sort_order' => 1,
             'is_published' => false,
         ]);
         $d1->translations()->create([
             'locale' => 'en',
-            'title' => 'Mergers & Acquisitions',
-            'dek' => 'Comprehensive buy-side and sell-side advisory services for mid-market corporate transactions.',
-            'pull_quote' => 'Maximizing enterprise value through strategic alignment and expert execution.',
+            'title' => 'Executive Presence & Communication Axiology',
+            'dek' => 'Aligning language, behaviour, and values into a coherent executive identity.',
+            'pull_quote' => 'Authority is not asserted. It is perceived.',
             'areas_of_focus' => [
-                ['title' => 'Sell-Side Advisory', 'description' => 'Guiding shareholders through successful business divestitures and exits.'],
-                ['title' => 'Buy-Side Advisory', 'description' => 'Identifying, evaluating, and executing strategic acquisition targets.'],
-                ['title' => 'Strategic Partnerships', 'description' => 'Structuring joint ventures and tactical alliances.']
+                ['title' => 'Executive Presence', 'description' => 'Executive presence, behavioural congruence, and environmental awareness'],
+                ['title' => 'Verbal Axiology', 'description' => 'Communicating core values through linguistic precision'],
+                ['title' => 'Non-Verbal Calibration', 'description' => 'Including posture, gesture, spatial command, and vocal delivery'],
+                ['title' => 'Behavioural Observation', 'description' => 'Conversational subtext and interpersonal pattern recognition'],
+                ['title' => 'Negotiation Dynamics', 'description' => 'High-stakes negotiation dynamics and executive influence']
             ]
         ]);
 
         $d2 = Discipline::create([
-            'slug' => 'debt-advisory',
+            'slug' => 'executive-positioning',
             'sort_order' => 2,
             'is_published' => false,
         ]);
         $d2->translations()->create([
             'locale' => 'en',
-            'title' => 'Debt Advisory',
-            'dek' => 'Bespoke capital raising and optimization solutions across the entire debt spectrum.',
-            'pull_quote' => 'Designing flexible debt structures that support corporate growth objectives.',
+            'title' => 'Executive Positioning & Behavioural Intelligence',
+            'dek' => 'Understanding human behaviour to shape strategic outcomes.',
+            'pull_quote' => 'Influence begins where understanding exceeds assumption.',
             'areas_of_focus' => [
-                ['title' => 'Growth Capital', 'description' => 'Securing senior debt and mezzanine financing for business expansion.'],
-                ['title' => 'Debt Refinancing', 'description' => 'Optimizing existing credit facilities to improve cost and covenants.'],
-                ['title' => 'Special Situations', 'description' => 'Structuring rescue financing and liquidity solutions during transitions.']
+                ['title' => 'Behavioural Analysis', 'description' => 'Behavioural analysis and executive decision-making patterns'],
+                ['title' => 'Cognitive Tendencies', 'description' => 'Communication defaults, cognitive tendencies, and strategic adaptability'],
+                ['title' => 'Executive Positioning', 'description' => 'Executive positioning and long-term professional reputation'],
+                ['title' => 'Sovereign Influence', 'description' => 'Influence without manipulation through behavioural awareness'],
+                ['title' => 'Enduring Authority', 'description' => 'Building enduring authority across organisations and industries']
             ]
         ]);
 
-        // 3. Testimonials (Müşteri Yorumları)
-        $t1 = Testimonial::create([
-            'person_name' => 'John Carter',
-            'role' => 'Chief Executive Officer',
-            'city' => 'London',
-            'placement' => 'home',
-            'sort_order' => 1,
+        $d3 = Discipline::create([
+            'slug' => 'self-mastery',
+            'sort_order' => 3,
             'is_published' => false,
         ]);
-        $t1->translations()->create([
+        $d3->translations()->create([
             'locale' => 'en',
-            'quote' => 'Their strategic insight and transaction execution capabilities were pivotal in achieving our recent corporate recapitalization.',
+            'title' => 'Executive Self-Mastery & Personal Architecture',
+            'dek' => 'Translating self-awareness, temporal discipline, and strategic clarity into long-term sovereign trajectory.',
+            'pull_quote' => 'Mastery of circumstance begins with total governance of the self.',
+            'areas_of_focus' => [
+                ['title' => 'Cognitive Self-Awareness & Internal Auditing', 'description' => 'Deconstructing psychological defaults and blind spots'],
+                ['title' => 'Temporal Architecture & High-Yield Resource Allocation', 'description' => 'Structuring focus and mental energy as strategic capital'],
+                ['title' => 'Goal Alignment & Strategic Trajectory', 'description' => 'Mapping precise multi-year personal benchmarks'],
+                ['title' => 'Resilience Mechanics & Pressure Calibration', 'description' => 'Mental fortitude and composure during extreme volatility'],
+                ['title' => 'Personal Sovereignty & Executive Discipline', 'description' => 'Cultivating non-negotiable internal standards']
+            ]
         ]);
 
-        $t2 = Testimonial::create([
-            'person_name' => 'Elena Vītola',
-            'role' => 'Managing Director',
-            'city' => 'Riga',
-            'placement' => 'both',
-            'sort_order' => 2,
+        $d4 = Discipline::create([
+            'slug' => 'strategic-messaging',
+            'sort_order' => 4,
             'is_published' => false,
         ]);
-        $t2->translations()->create([
+        $d4->translations()->create([
             'locale' => 'en',
-            'quote' => 'An exceptionally professional partner. Their deep understanding of international debt markets proved crucial to our expansion.',
+            'title' => 'Strategic Messaging, Media & Institutional Communication',
+            'dek' => 'Designing narratives that strengthen credibility, protect reputation, and inspire confidence.',
+            'pull_quote' => 'The organisations that communicate with clarity are the organisations that earn trust.',
+            'areas_of_focus' => [
+                ['title' => 'Media Training', 'description' => 'Executive media training and on-camera communication'],
+                ['title' => 'Institutional Messaging', 'description' => 'Institutional messaging and stakeholder communication'],
+                ['title' => 'Public Appearances', 'description' => 'High-stakes interviews, panel discussions, and public appearances'],
+                ['title' => 'Crisis Communication', 'description' => 'Crisis communication and reputation management principles'],
+                ['title' => 'Narrative Strategy', 'description' => 'Narrative strategy for organisations, founders, and public figures']
+            ]
         ]);
 
-        // 4. Metrics (Metrikler / Başarı Rakamları)
-        $m1 = Metric::create([
-            'value' => '200+',
-            'placement' => 'home',
-            'sort_order' => 1,
-            'is_published' => false,
-        ]);
-        $m1->translations()->create([
-            'locale' => 'en',
-            'label' => 'Transactions Successfully Executed',
-        ]);
-
-        $m2 = Metric::create([
-            'value' => '€1.8B+',
-            'placement' => 'both',
-            'sort_order' => 2,
-            'is_published' => false,
-        ]);
-        $m2->translations()->create([
-            'locale' => 'en',
-            'label' => 'Total Advisory Value',
-        ]);
-
-        // 5. Vision & Values (Vizyon ve Değerler)
-        $v1 = VisionValue::create([
-            'sort_order' => 1,
-        ]);
-        $v1->translations()->create([
-            'locale' => 'en',
-            'title' => 'Client First',
-            'description' => 'We maintain absolute independence and alignment with our clients’ long-term interests.',
-        ]);
-
-        $v2 = VisionValue::create([
-            'sort_order' => 2,
-        ]);
-        $v2->translations()->create([
-            'locale' => 'en',
-            'title' => 'Absolute Integrity',
-            'description' => 'Uncompromising professional ethics and confidentiality govern all our engagements.',
-        ]);
-
-        // 6. Axio Dimensions (Axio Metodu Boyutları)
-        $a1 = AxioDimension::create([
-            'sort_order' => 1,
-        ]);
+        // 3. Axio Dimensions (4, in this order)
+        $a1 = AxioDimension::create(['sort_order' => 1]);
         $a1->translations()->create([
             'locale' => 'en',
-            'title' => 'Strategic Blueprinting',
-            'description' => 'Aligning corporate strategy with corporate finance options before entering the market.',
+            'title' => 'Awareness',
+            'description' => 'Understanding behavioural patterns, cognitive defaults, internal blind spots, and executive perception.',
         ]);
 
-        $a2 = AxioDimension::create([
-            'sort_order' => 2,
-        ]);
+        $a2 = AxioDimension::create(['sort_order' => 2]);
         $a2->translations()->create([
             'locale' => 'en',
-            'title' => 'Covenant Optimization',
-            'description' => 'Negotiating terms that preserve operational freedom and support strategic flexibility.',
+            'title' => 'Alignment',
+            'description' => 'Ensuring language, values, non-verbal behaviour, and personal architecture operate with complete consistency.',
         ]);
+
+        $a3 = AxioDimension::create(['sort_order' => 3]);
+        $a3->translations()->create([
+            'locale' => 'en',
+            'title' => 'Influence',
+            'description' => 'Communicating complex ideas with structural clarity, credibility, and strategic precision.',
+        ]);
+
+        $a4 = AxioDimension::create(['sort_order' => 4]);
+        $a4->translations()->create([
+            'locale' => 'en',
+            'title' => 'Outcome',
+            'description' => 'Translating personal governance and communication architecture into measurable organisational, commercial, and leadership results.',
+        ]);
+
+        // 4. Vision Values (6, in this order)
+        $v1 = VisionValue::create(['sort_order' => 1]);
+        $v1->translations()->create([
+            'locale' => 'en',
+            'title' => 'Uncompromising Authenticity',
+            'description' => 'True presence is not performative; it is the total elimination of incongruence. We strip away superficial rhetoric and artificial behaviours to construct a commanding executive presence rooted in core values and structural alignment.',
+        ]);
+
+        $v2 = VisionValue::create(['sort_order' => 2]);
+        $v2->translations()->create([
+            'locale' => 'en',
+            'title' => 'Empirical Efficacy Over Theory',
+            'description' => 'Every framework deployed within The AXIO Method™ is stress-tested in real-world high-stakes environments. We reject ideas that sound sophisticated but fail under pressure.',
+        ]);
+
+        $v3 = VisionValue::create(['sort_order' => 3]);
+        $v3->translations()->create([
+            'locale' => 'en',
+            'title' => 'Continuous Analytical Evolution',
+            'description' => 'The dynamics of global influence and institutional governance are constantly shifting. I hold my practice to the highest analytical and academic standards.',
+        ]);
+
+        $v4 = VisionValue::create(['sort_order' => 4]);
+        $v4->translations()->create([
+            'locale' => 'en',
+            'title' => 'Bespoke Human Architecture',
+            'description' => 'High-stakes leaders require surgical, highly tailored solutions. Every engagement is calibrated to your specific psychological profile, organisational dynamics, cultural context, and long-term strategic trajectory.',
+        ]);
+
+        $v5 = VisionValue::create(['sort_order' => 5]);
+        $v5->translations()->create([
+            'locale' => 'en',
+            'title' => 'Strategic Candor',
+            'description' => 'Operational flattery breeds stagnation. I provide direct, unvarnished analytical feedback identifying behavioural blind spots and communication vulnerabilities with absolute clarity.',
+        ]);
+
+        $v6 = VisionValue::create(['sort_order' => 6]);
+        $v6->translations()->create([
+            'locale' => 'en',
+            'title' => 'Global & Cross-Border Acumen',
+            'description' => 'Communication is deeply cultural, contextual, and political. Drawing from experience across European institutions, Scandinavian academic centers, and international jurisdictions.',
+        ]);
+
+        // 5. Testimonials (9 grid + 1 featured)
+        $testimonials = [
+            [
+                'person_name' => 'Marcus H.',
+                'role' => 'Managing Partner',
+                'city' => 'Berlin',
+                'placement' => 'home',
+                'sort_order' => 1,
+                'is_featured' => false,
+                'quote' => 'A precision I had not experienced from any communications advisor. Every room changed after.'
+            ],
+            [
+                'person_name' => 'Sofia R.',
+                'role' => 'Group CFO',
+                'city' => 'Amsterdam',
+                'placement' => 'home',
+                'sort_order' => 2,
+                'is_featured' => false,
+                'quote' => 'Not coaching. Architecture. The frameworks held up in front of the board, the press and the market.'
+            ],
+            [
+                'person_name' => 'Amir K.',
+                'role' => 'Founder',
+                'city' => 'Dubai',
+                'placement' => 'home',
+                'sort_order' => 3,
+                'is_featured' => false,
+                'quote' => 'Measurable, repeatable, and entirely remote. My executive presence became a system, not a mood.'
+            ],
+            [
+                'person_name' => 'Yuki T.',
+                'role' => 'COO',
+                'city' => 'Tokyo',
+                'placement' => 'case_studies',
+                'sort_order' => 4,
+                'is_featured' => false,
+                'quote' => 'The clarity we gained reshaped how the entire executive layer communicates upward and outward.'
+            ],
+            [
+                'person_name' => 'Laila N.',
+                'role' => 'Managing Director',
+                'city' => 'Zürich',
+                'placement' => 'case_studies',
+                'sort_order' => 5,
+                'is_featured' => false,
+                'quote' => 'Efe rebuilt the way I hold a room. The return on that single shift is difficult to overstate.'
+            ],
+            [
+                'person_name' => 'Carlos V.',
+                'role' => 'Chairman',
+                'city' => 'São Paulo',
+                'placement' => 'case_studies',
+                'sort_order' => 6,
+                'is_featured' => false,
+                'quote' => 'Strategic candor delivered with total discretion. Precisely the counsel a founder rarely receives.'
+            ],
+            [
+                'person_name' => 'Priya S.',
+                'role' => 'Head of Enterprise Operations',
+                'city' => 'Singapore',
+                'placement' => 'case_studies',
+                'sort_order' => 7,
+                'is_featured' => false,
+                'quote' => 'Managing an organisation of 40+ professionals, I assumed my communication architecture was established. The AXIO Method™ revealed significant unexploited leverage.'
+            ],
+            [
+                'person_name' => 'Rémi D.',
+                'role' => 'Senior Institutional Consultant',
+                'city' => 'Paris',
+                'placement' => 'case_studies',
+                'sort_order' => 8,
+                'is_featured' => false,
+                'quote' => 'Three advisory sessions in, I successfully renegotiated two commercial agreements that had been deadlocked for months.'
+            ],
+            [
+                'person_name' => 'Nadia O.',
+                'role' => 'Principal Architect & Studio Founder',
+                'city' => 'Warsaw',
+                'placement' => 'case_studies',
+                'sort_order' => 9,
+                'is_featured' => false,
+                'quote' => 'The Narrative Architecture framework completely transformed how our firm structures high-stakes enterprise proposals.'
+            ],
+            [
+                'person_name' => 'Thomas M.',
+                'role' => 'Chief Executive Officer',
+                'city' => 'Logistics Group',
+                'city_extra' => 'Copenhagen, Denmark', // Will set this to city field
+                'placement' => 'case_studies',
+                'sort_order' => 10,
+                'is_featured' => true,
+                'quote' => 'I engaged Efe as an established founder navigating a growth plateau... The strategic ROI on this advisory mandate remains unmatched over my last decade of enterprise leadership.'
+            ]
+        ];
+
+        foreach ($testimonials as $tData) {
+            $t = Testimonial::create([
+                'person_name' => $tData['person_name'],
+                'role' => $tData['role'],
+                'city' => $tData['city_extra'] ?? $tData['city'],
+                'placement' => $tData['placement'],
+                'sort_order' => $tData['sort_order'],
+                'is_published' => false,
+                'is_featured' => $tData['is_featured'],
+            ]);
+            $t->translations()->create([
+                'locale' => 'en',
+                'quote' => $tData['quote'],
+            ]);
+        }
+
+        // 6. Metrics (in this order)
+        $metrics = [
+            [
+                'value' => '200+',
+                'label' => 'C-Suite & High-Performing Executives Advised',
+                'placement' => 'both',
+                'sort_order' => 1
+            ],
+            [
+                'value' => '15+',
+                'label' => 'Jurisdictions & Markets Reached',
+                'placement' => 'both',
+                'sort_order' => 2
+            ],
+            [
+                'value' => '6+',
+                'label' => 'Years Applied Leadership Experience',
+                'placement' => 'home',
+                'sort_order' => 3
+            ],
+            [
+                'value' => '98%',
+                'label' => 'Client Retention & Mandate Renewal Rate',
+                'placement' => 'case_studies',
+                'sort_order' => 4
+            ],
+            [
+                'value' => '5.0',
+                'label' => 'Average Strategic Satisfaction Rating',
+                'placement' => 'case_studies',
+                'sort_order' => 5
+            ]
+        ];
+
+        foreach ($metrics as $mData) {
+            $m = Metric::create([
+                'value' => $mData['value'],
+                'placement' => $mData['placement'],
+                'sort_order' => $mData['sort_order'],
+                'is_published' => false,
+            ]);
+            $m->translations()->create([
+                'locale' => 'en',
+                'label' => $mData['label'],
+            ]);
+        }
 
         // 7. Pages SEO (Sayfaların Meta Verileri)
         $pages = [
