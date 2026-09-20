@@ -94,9 +94,22 @@
     </div>
 </section>
 
-<!-- Macro Quote Block (Dark ground, Large Serif) -->
-<section class="bg-ink text-bone py-24 px-6 md:px-12 border-b border-hairline-invert text-center relative overflow-hidden">
-    <div class="max-w-4xl mx-auto reveal-on-scroll">
+<!-- Macro Quote Block (Full-bleed photograph, Large Serif) -->
+{{--
+    Same treatment as the discipline hero: a darkened photograph behind the
+    text rather than a flat ink ground. The European Parliament is not
+    decoration here — it is what "European institutions" in the values above
+    actually refers to, so the page shows the claim instead of only making it.
+--}}
+<section class="bg-ink text-bone py-32 md:py-40 px-6 md:px-12 border-b border-hairline-invert text-center relative overflow-hidden flex items-center min-h-[420px]">
+    <div class="absolute inset-0 z-0">
+        <img src="{{ asset('images/brussels-parliament.jpg') }}"
+             alt="" aria-hidden="true"
+             class="w-full h-full object-cover filter grayscale contrast-125 opacity-32" />
+        <div class="absolute inset-0 bg-ink/80 pointer-events-none"></div>
+    </div>
+
+    <div class="max-w-4xl mx-auto reveal-on-scroll relative z-10">
         <p class="font-heading text-[clamp(24px,3.5vw,36px)] leading-relaxed mb-8">
             {{ __('Vision page macro quote') }}
         </p>
