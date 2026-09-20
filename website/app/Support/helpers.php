@@ -73,3 +73,26 @@ if (! function_exists('localeUrl')) {
         return app(LocaleUrl::class);
     }
 }
+
+if (! function_exists('briefing_url')) {
+    /**
+     * Where the "Request Executive Briefing" buttons point.
+     *
+     * The external scheduling page when one is configured, otherwise the
+     * contact page. Callers should treat an http(s) result as external and
+     * open it in a new tab with rel="noopener".
+     */
+    function briefing_url(): string
+    {
+        return config('contact.booking_url') ?: locale_route('contact');
+    }
+}
+
+if (! function_exists('briefing_url_is_external')) {
+    function briefing_url_is_external(): bool
+    {
+        $url = config('contact.booking_url');
+
+        return is_string($url) && str_starts_with($url, 'http');
+    }
+}

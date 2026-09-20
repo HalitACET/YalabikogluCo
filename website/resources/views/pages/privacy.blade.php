@@ -89,6 +89,12 @@
                 </div>
             @endforeach
         </div>
+
+        @if(config('contact.booking_url'))
+            <p class="max-w-2xl mt-12 text-sm text-body-text leading-relaxed font-sans reveal-on-scroll">
+                {{ __('Scheduling disclosure') }}
+            </p>
+        @endif
     </div>
 </section>
 

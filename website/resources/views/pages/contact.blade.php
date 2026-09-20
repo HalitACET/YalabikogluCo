@@ -57,6 +57,23 @@
                 </div>
             </div>
 
+            @if(config('contact.booking_url'))
+                <div class="reveal-on-scroll grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 py-8 border-b border-hairline items-baseline">
+                    <span class="col-span-1 md:col-span-3 text-[10px] text-grey uppercase tracking-widest font-semibold">
+                        {{ __('Scheduling') }}
+                    </span>
+                    <div class="col-span-1 md:col-span-9">
+                        <a href="{{ config('contact.booking_url') }}" target="_blank" rel="noopener noreferrer"
+                           class="font-heading text-xl md:text-2xl font-semibold leading-snug border-b border-ink pb-1 hover:opacity-60 transition-opacity">
+                            {{ __('Book a briefing') }} ↗
+                        </a>
+                        <p class="text-sm text-body-text leading-relaxed font-sans mt-4 max-w-xl">
+                            {{ __('Scheduling note') }}
+                        </p>
+                    </div>
+                </div>
+            @endif
+
             @if($phone)
                 <div class="reveal-on-scroll grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 py-8 border-b border-hairline items-baseline">
                     <span class="col-span-1 md:col-span-3 text-[10px] text-grey uppercase tracking-widest font-semibold">
@@ -173,6 +190,12 @@
                 __('Data point no tracking'),
                 __('Data point correspondence'),
             ];
+
+            // The scheduling link leaves this site. Say so, rather than let the
+            // list imply the visitor never reaches a third party at all.
+            if (config('contact.booking_url')) {
+                $dataPoints[] = __('Data point scheduling');
+            }
         @endphp
 
         <ul class="flex flex-col border-t border-hairline-invert max-w-2xl">

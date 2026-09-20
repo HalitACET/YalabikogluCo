@@ -18,6 +18,23 @@ return [
     'email' => env('CONTACT_EMAIL', 'contact@yalabikoglu.co'),
 
     /*
+    |--------------------------------------------------------------------------
+    | Scheduling Link
+    |--------------------------------------------------------------------------
+    | An external booking page (Calendly or similar). The "Request Executive
+    | Briefing" buttons point here when it is set, and fall back to the contact
+    | page when it is empty, so the site works either way.
+    |
+    | This is a LINK, not an embed, and it must stay one. Embedding a Calendly
+    | widget would run their JavaScript on our pages, set their cookies and
+    | hand every visitor's IP address to them on page load — which would make
+    | the contact and privacy pages untrue and require a consent banner.
+    | A link is only followed if the visitor chooses to, exactly like the
+    | LinkedIn and Medium links in the footer.
+    */
+    'booking_url' => env('CONTACT_BOOKING_URL'),
+
+    /*
     | Optional. Leave null to hide the row entirely.
     */
     'phone' => env('CONTACT_PHONE'),

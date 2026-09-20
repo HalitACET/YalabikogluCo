@@ -246,7 +246,7 @@
             </span>
         </div>
         <a 
-            href="{{ locale_route('contact') }}" 
+            href="{{ briefing_url() }}" @if(briefing_url_is_external()) target="_blank" rel="noopener noreferrer" @endif
             class="bg-bone text-ink text-[10px] uppercase tracking-widest font-bold px-6 py-2.5 hover:bg-ink hover:text-bone border border-bone transition-all duration-300 text-center w-full sm:w-auto"
         >
             {{ __('Request Executive Briefing') }}

@@ -90,7 +90,15 @@ class PublicSiteTest extends TestCase
         // fetches automatically — fonts, scripts, images, stylesheets.
         $ownHost = parse_url(config('app.url'), PHP_URL_HOST);
 
-        $allowedHosts = [$ownHost, 'linkedin.com', 'medium.com', 'instagram.com'];
+        // Outbound destinations the visitor chooses to follow. The scheduling
+        // link belongs here for the same reason the social links do: it is a
+        // link, not an embed, so nothing is fetched from it on page load. If it
+        // ever becomes an embedded widget, this test should start failing.
+        $bookingHost = parse_url((string) config('contact.booking_url'), PHP_URL_HOST);
+
+        $allowedHosts = array_filter([
+            $ownHost, $bookingHost, 'linkedin.com', 'medium.com', 'instagram.com',
+        ]);
 
         foreach ($this->urls() as $url) {
             $html = $this->get($url)->getContent();

@@ -60,7 +60,8 @@
 
         <!-- Hero Action Buttons -->
         <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 reveal-on-scroll">
-            <a href="{{ locale_route('contact') }}" class="bg-bone text-ink text-xs uppercase tracking-widest font-bold px-8 py-4 hover:bg-ink hover:text-bone border border-bone transition-all duration-300 text-center">
+            <a href="{{ briefing_url() }}" @if(briefing_url_is_external()) target="_blank" rel="noopener noreferrer" @endif
+               class="bg-bone text-ink text-xs uppercase tracking-widest font-bold px-8 py-4 hover:bg-ink hover:text-bone border border-bone transition-all duration-300 text-center">
                 {{ __('Request Executive Briefing') }}
             </a>
             <a href="{{ locale_route('axio-method') }}" class="text-xs uppercase tracking-widest font-semibold hover:opacity-60 transition-opacity border-b border-bone py-2 text-center text-bone">
