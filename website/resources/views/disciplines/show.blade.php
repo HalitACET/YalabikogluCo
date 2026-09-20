@@ -1,16 +1,21 @@
 @extends('layouts.app')
 
 @section('title', $discipline->translate()?->title . ' — Yalabikoglu & Co.')
+@section('meta_description', $discipline->translate()?->dek)
 
 @section('content')
 
 @php
     $slug = $discipline->slug;
+    // Locally hosted placeholders. Editors can override any of these by
+    // attaching an image to the discipline in the admin panel. They are served
+    // from our own origin on purpose — a remote image URL would hand the
+    // visitor's IP address to a third party on every page view.
     $images = [
-        'executive-presence' => 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80',
-        'executive-positioning' => 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1200&q=80',
-        'self-mastery' => 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80',
-        'strategic-messaging' => 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80',
+        'executive-presence' => asset('images/placeholders/discipline-executive-presence.jpg'),
+        'executive-positioning' => asset('images/placeholders/discipline-executive-positioning.jpg'),
+        'self-mastery' => asset('images/placeholders/discipline-self-mastery.jpg'),
+        'strategic-messaging' => asset('images/placeholders/discipline-strategic-messaging.jpg'),
     ];
     $heroImage = $discipline->getFirstMediaUrl('images') ?: ($images[$slug] ?? $images['executive-presence']);
 
@@ -36,7 +41,7 @@
             <div class="flex items-center space-x-3 mb-6 reveal-on-scroll">
                 <span class="status-dot"></span>
                 <span class="text-[10px] uppercase tracking-widest font-semibold text-bone/60">
-                    The AXIO Method™
+                    {{ __('AXIO Method') }}
                 </span>
             </div>
             <h1 class="font-heading text-[clamp(32px,5vw,64px)] tracking-tight leading-[1.1] font-semibold text-bone mb-6 reveal-on-scroll">
@@ -60,7 +65,7 @@
 <section class="py-24 px-6 md:px-12 bg-bone text-ink border-b border-hairline">
     <div class="max-w-4xl mx-auto">
         <h2 class="text-grey text-[10px] font-bold uppercase tracking-widest mb-16 reveal-on-scroll">
-            Areas of Focus
+            {{ __('Areas of Focus') }}
         </h2>
         
         <div class="flex flex-col border-t border-hairline">
@@ -103,7 +108,7 @@
     @if($prevDiscipline)
         <a href="{{ route($routeName, ['slug' => $prevDiscipline->slug]) }}" 
            class="reveal-on-scroll group border-b md:border-b-0 md:border-r border-hairline p-12 md:p-16 flex flex-col justify-between hover:bg-ink hover:text-bone transition-all duration-500 min-h-[240px]">
-            <span class="text-[10px] text-grey uppercase tracking-widest font-semibold group-hover:text-bone/60 transition-colors">Previous Discipline</span>
+            <span class="text-[10px] text-grey uppercase tracking-widest font-semibold group-hover:text-bone/60 transition-colors">{{ __('Previous Discipline') }}</span>
             <div class="mt-8">
                 <span class="text-xs font-mono text-grey/60 block mb-2">0{{ $prevDiscipline->sort_order }}</span>
                 <h3 class="font-heading text-2xl font-semibold leading-snug group-hover:translate-x-2 transition-transform duration-300">
@@ -117,7 +122,7 @@
     @if($nextDiscipline)
         <a href="{{ route($routeName, ['slug' => $nextDiscipline->slug]) }}" 
            class="reveal-on-scroll group p-12 md:p-16 flex flex-col justify-between hover:bg-ink hover:text-bone transition-all duration-500 min-h-[240px]">
-            <span class="text-[10px] text-grey uppercase tracking-widest font-semibold text-right block group-hover:text-bone/60 transition-colors">Next Discipline</span>
+            <span class="text-[10px] text-grey uppercase tracking-widest font-semibold text-right block group-hover:text-bone/60 transition-colors">{{ __('Next Discipline') }}</span>
             <div class="mt-8 text-right">
                 <span class="text-xs font-mono text-grey/60 block mb-2">0{{ $nextDiscipline->sort_order }}</span>
                 <h3 class="font-heading text-2xl font-semibold leading-snug group-hover:-translate-x-2 transition-transform duration-300">

@@ -11,16 +11,12 @@
     <!-- SEO hreflang tags -->
     @hreflang
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    {{-- Fonts are self-hosted (see vite.config.js). No request ever leaves
+         this origin, so no third party sees a visitor's IP address. --}}
+    @fonts
 
-    <!-- CSS & JS Assets -->
+    <!-- CSS & JS Assets (Alpine is bundled into app.js, not loaded from a CDN) -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-    <!-- Alpine.js -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body class="bg-bone text-ink antialiased min-h-screen flex flex-col selection:bg-ink selection:text-bone">
 
@@ -36,7 +32,7 @@
     >
         <div class="w-full px-6 md:px-12 flex justify-between items-center">
             <!-- Wordmark -->
-            <a href="{{ route('home') }}" class="font-heading text-lg md:text-xl tracking-wider font-semibold uppercase transition-colors whitespace-nowrap">
+            <a href="{{ locale_route('home') }}" class="font-heading text-lg md:text-xl tracking-wider font-semibold uppercase transition-colors whitespace-nowrap">
                 Yalabikoglu & Co.
             </a>
 
@@ -52,22 +48,22 @@
                 $isContact = request()->is('contact*') || request()->is('*/contact*');
             @endphp
             <nav class="hidden lg:flex items-center space-x-8 text-xs uppercase tracking-widest font-medium">
-                <a href="{{ route('home') }}" class="transition-opacity whitespace-nowrap {{ $isHome ? 'opacity-55' : 'opacity-100 hover:opacity-55' }}">
+                <a href="{{ locale_route('home') }}" class="transition-opacity whitespace-nowrap {{ $isHome ? 'opacity-55' : 'opacity-100 hover:opacity-55' }}">
                     {{ __('Home') }}
                 </a>
-                <a href="{{ route('home') }}/disciplines" class="transition-opacity whitespace-nowrap {{ $isDisciplines ? 'opacity-55' : 'opacity-100 hover:opacity-55' }}">
+                <a href="{{ locale_route('disciplines') }}" class="transition-opacity whitespace-nowrap {{ $isDisciplines ? 'opacity-55' : 'opacity-100 hover:opacity-55' }}">
                     {{ __('Disciplines') }}
                 </a>
-                <a href="{{ route('home') }}/axio-method" class="transition-opacity whitespace-nowrap {{ $isAxio ? 'opacity-55' : 'opacity-100 hover:opacity-55' }}">
+                <a href="{{ locale_route('axio-method') }}" class="transition-opacity whitespace-nowrap {{ $isAxio ? 'opacity-55' : 'opacity-100 hover:opacity-55' }}">
                     {{ __('AXIO Method') }}
                 </a>
-                <a href="{{ route('home') }}/case-studies" class="transition-opacity whitespace-nowrap {{ $isCaseStudies ? 'opacity-55' : 'opacity-100 hover:opacity-55' }}">
+                <a href="{{ locale_route('case-studies') }}" class="transition-opacity whitespace-nowrap {{ $isCaseStudies ? 'opacity-55' : 'opacity-100 hover:opacity-55' }}">
                     {{ __('Case Studies') }}
                 </a>
-                <a href="{{ route('home') }}/vision" class="transition-opacity whitespace-nowrap {{ $isVision ? 'opacity-55' : 'opacity-100 hover:opacity-55' }}">
+                <a href="{{ locale_route('vision') }}" class="transition-opacity whitespace-nowrap {{ $isVision ? 'opacity-55' : 'opacity-100 hover:opacity-55' }}">
                     {{ __('Vision & Values') }}
                 </a>
-                <a href="{{ route('home') }}/contact" class="transition-opacity whitespace-nowrap {{ $isContact ? 'opacity-55' : 'opacity-100 hover:opacity-55' }}">
+                <a href="{{ locale_route('contact') }}" class="transition-opacity whitespace-nowrap {{ $isContact ? 'opacity-55' : 'opacity-100 hover:opacity-55' }}">
                     {{ __('Contact') }}
                 </a>
             </nav>
@@ -89,7 +85,7 @@
                 <button 
                     @click="menuOpen = !menuOpen" 
                     class="lg:hidden p-1 focus:outline-none"
-                    aria-label="Toggle menu"
+                    aria-label="{{ __('Toggle menu') }}"
                 >
                     <svg class="w-6 h-6 current-color" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path x-show="!menuOpen" stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
@@ -112,12 +108,12 @@
             style="display: none;"
         >
             <nav class="flex flex-col space-y-6 text-2xl font-heading tracking-wide">
-                <a @click="menuOpen = false" href="{{ route('home') }}" class="hover:opacity-75 transition-opacity">{{ __('Home') }}</a>
-                <a @click="menuOpen = false" href="{{ route('home') }}/disciplines" class="hover:opacity-75 transition-opacity">{{ __('Disciplines') }}</a>
-                <a @click="menuOpen = false" href="{{ route('home') }}/axio-method" class="hover:opacity-75 transition-opacity">{{ __('AXIO Method') }}</a>
-                <a @click="menuOpen = false" href="{{ route('home') }}/case-studies" class="hover:opacity-75 transition-opacity">{{ __('Case Studies') }}</a>
-                <a @click="menuOpen = false" href="{{ route('home') }}/vision" class="hover:opacity-75 transition-opacity">{{ __('Vision & Values') }}</a>
-                <a @click="menuOpen = false" href="{{ route('home') }}/contact" class="hover:opacity-75 transition-opacity">{{ __('Contact') }}</a>
+                <a @click="menuOpen = false" href="{{ locale_route('home') }}" class="hover:opacity-75 transition-opacity">{{ __('Home') }}</a>
+                <a @click="menuOpen = false" href="{{ locale_route('disciplines') }}" class="hover:opacity-75 transition-opacity">{{ __('Disciplines') }}</a>
+                <a @click="menuOpen = false" href="{{ locale_route('axio-method') }}" class="hover:opacity-75 transition-opacity">{{ __('AXIO Method') }}</a>
+                <a @click="menuOpen = false" href="{{ locale_route('case-studies') }}" class="hover:opacity-75 transition-opacity">{{ __('Case Studies') }}</a>
+                <a @click="menuOpen = false" href="{{ locale_route('vision') }}" class="hover:opacity-75 transition-opacity">{{ __('Vision & Values') }}</a>
+                <a @click="menuOpen = false" href="{{ locale_route('contact') }}" class="hover:opacity-75 transition-opacity">{{ __('Contact') }}</a>
             </nav>
 
             <div class="border-t border-hairline-invert pt-6 flex flex-col space-y-4">
@@ -171,10 +167,8 @@
                 @foreach($dbPages as $dbPage)
                     @php
                         $key = $slugTitles[$dbPage->slug] ?? ucfirst(str_replace('-', ' ', $dbPage->slug));
-                        // Home slug is '/', others are relative
-                        $urlPath = $dbPage->slug === 'home' ? '' : '/' . $dbPage->slug;
                     @endphp
-                    <a href="{{ route('home') }}{{ $urlPath }}" class="hover:text-grey transition-colors">
+                    <a href="{{ $dbPage->slug === 'home' ? locale_route('home') : locale_route($dbPage->slug) }}" class="hover:text-grey transition-colors">
                         {{ __($key) }}
                     </a>
                 @endforeach
@@ -208,11 +202,11 @@
 
         <div class="max-w-7xl mx-auto border-t border-hairline-invert mt-12 pt-6 flex flex-col md:flex-row justify-between items-center text-[10px] text-grey uppercase tracking-widest">
             <div>
-                © {{ date('Y') }} Yalabikoglu & Co. All rights reserved.
+                © {{ date('Y') }} Yalabikoglu & Co. {{ __('All rights reserved.') }}
             </div>
             <div class="mt-2 md:mt-0 flex space-x-6">
                 <a href="https://linkedin.com/company/yalabikogluandco" target="_blank" rel="noopener noreferrer" class="hover:text-bone transition-colors">LinkedIn</a>
-                <a href="{{ route('home') }}/privacy" class="hover:text-bone transition-colors">{{ __('Privacy Policy') }}</a>
+                <a href="{{ locale_route('privacy') }}" class="hover:text-bone transition-colors">{{ __('Privacy Policy') }}</a>
             </div>
         </div>
     </footer>
@@ -238,29 +232,12 @@
             </span>
         </div>
         <a 
-            href="{{ route('home') }}/contact" 
+            href="{{ locale_route('contact') }}" 
             class="bg-bone text-ink text-[10px] uppercase tracking-widest font-bold px-6 py-2.5 hover:bg-ink hover:text-bone border border-bone transition-all duration-300 text-center w-full sm:w-auto"
         >
             {{ __('Request Executive Briefing') }}
         </a>
     </div>
 
-    <!-- Scroll Reveal JavaScript -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('reveal-visible');
-                    }
-                });
-            }, { 
-                threshold: 0.05,
-                rootMargin: '0px 0px -50px 0px'
-            });
-
-            document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
-        });
-    </script>
 </body>
 </html>

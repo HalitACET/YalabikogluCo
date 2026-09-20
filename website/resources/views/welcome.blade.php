@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Yalabikoglu & Co. — Executive Communication Axiology')
+@section('title', 'Yalabikoglu & Co. — ' . (page_meta('home')?->meta_title ?: 'Executive Communication Axiology'))
+@section('meta_description', page_meta('home')?->meta_description)
 
 @section('content')
 
@@ -26,7 +27,7 @@
 <section class="relative min-h-[90vh] flex items-center px-6 md:px-12 py-24 bg-ink text-bone border-b border-hairline-invert overflow-hidden">
     <!-- Background B&W Photo with Dark Overlay -->
     <div class="absolute inset-0 z-0">
-        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=1600&q=80" 
+        <img src="{{ asset('images/placeholders/hero-home.jpg') }}" 
              alt="Executive Presence background" 
              class="w-full h-full object-cover filter grayscale contrast-125" />
         <div class="absolute inset-0 bg-ink/75 pointer-events-none"></div>
@@ -38,22 +39,22 @@
         <div class="flex items-center space-x-3 mb-6 reveal-on-scroll">
             <span class="status-dot"></span>
             <span class="text-[10px] uppercase tracking-widest font-semibold text-bone/60">
-                Available for Remote Coaching
+                {{ __('Available for Remote Coaching') }}
             </span>
         </div>
 
         <!-- Main Heading -->
         <h1 class="font-heading text-[clamp(38px,6.2vw,84px)] tracking-tight leading-[1.05] font-semibold text-bone mb-8 reveal-on-scroll">
-            Transform the way you<br>communicate, lead<br>& grow
+            {!! __('Transform the way you communicate, lead & grow') !!}
         </h1>
 
         <!-- Hero Action Buttons -->
         <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 reveal-on-scroll">
-            <a href="{{ route('home') }}/contact" class="bg-bone text-ink text-xs uppercase tracking-widest font-bold px-8 py-4 hover:bg-ink hover:text-bone border border-bone transition-all duration-300 text-center">
+            <a href="{{ locale_route('contact') }}" class="bg-bone text-ink text-xs uppercase tracking-widest font-bold px-8 py-4 hover:bg-ink hover:text-bone border border-bone transition-all duration-300 text-center">
                 {{ __('Request Executive Briefing') }}
             </a>
-            <a href="{{ route('home') }}/axio-method" class="text-xs uppercase tracking-widest font-semibold hover:opacity-60 transition-opacity border-b border-bone py-2 text-center text-bone">
-                Explore The AXIO Method™
+            <a href="{{ locale_route('axio-method') }}" class="text-xs uppercase tracking-widest font-semibold hover:opacity-60 transition-opacity border-b border-bone py-2 text-center text-bone">
+                {{ __('Explore The AXIO Method™') }}
             </a>
         </div>
     </div>
@@ -83,7 +84,7 @@
         <!-- Profile Portrait -->
         <div class="reveal-on-scroll">
             <div class="relative aspect-[3/4] overflow-hidden bg-ink">
-                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80" 
+                <img src="{{ asset('images/placeholders/profile-portrait.jpg') }}" 
                      alt="Efe Yalabikoglu" 
                      class="w-full h-full object-cover grayscale-img" />
             </div>
@@ -91,16 +92,16 @@
 
         <!-- Biyografi ve Metin -->
         <div class="reveal-on-scroll flex flex-col justify-center space-y-6">
-            <span class="text-[10px] uppercase tracking-widest font-bold text-grey">Advisory Profile</span>
+            <span class="text-[10px] uppercase tracking-widest font-bold text-grey">{{ __('Advisory Profile') }}</span>
             <h2 class="font-heading text-3xl md:text-4xl font-semibold tracking-tight">
                 Efe Yalabikoglu
             </h2>
             <p class="text-xs text-grey uppercase tracking-widest font-semibold leading-none">
-                Founder & Principal Advisor
+                {{ __('Founder & Principal Advisor') }}
             </p>
             <div class="h-px bg-hairline w-12"></div>
             <p class="text-base text-body-text leading-relaxed font-sans max-w-xl">
-                Efe Yalabikoglu is an executive presence and communication positioning advisor. Grounded in behavioural research and institutional communication strategy, he architectures the verbal axiology, non-verbal calibration, and leadership presence of founders, public figures, and C-Suite executives globally. His practice translates communication philosophy into empirical executive sovereignty.
+                {{ __('Efe Yalabikoglu is an executive presence and communication positioning advisor.') }}
             </p>
         </div>
     </div>
@@ -111,7 +112,7 @@
     <div class="max-w-7xl mx-auto">
         <div class="mb-16 reveal-on-scroll">
             <h2 class="font-heading text-3xl md:text-4xl font-semibold tracking-tight">
-                Four Systems. One Communication Architecture.
+                {{ __('Four Systems. One Communication Architecture.') }}
             </h2>
         </div>
 
@@ -141,12 +142,12 @@
                 <div>
                     <span class="text-4xl lg:text-5xl font-heading text-grey/30 block mb-6 font-semibold">03·04</span>
                     <h3 class="font-heading text-xl font-semibold mb-4 leading-snug">
-                        Two more disciplines shape the full method.
+                        {{ __('Two more disciplines shape the full method.') }}
                     </h3>
                 </div>
                 <div class="pt-6">
-                    <a href="{{ route('home') }}/disciplines" class="text-xs uppercase tracking-widest font-bold border-b border-bone pb-2 hover:opacity-75 transition-opacity">
-                        View All Disciplines →
+                    <a href="{{ locale_route('disciplines') }}" class="text-xs uppercase tracking-widest font-bold border-b border-bone pb-2 hover:opacity-75 transition-opacity">
+                        {{ __('View All Disciplines →') }}
                     </a>
                 </div>
             </div>
@@ -158,7 +159,7 @@
 <section class="bg-ink text-bone py-24 px-6 md:px-12 border-b border-hairline-invert text-center relative overflow-hidden">
     <div class="max-w-4xl mx-auto reveal-on-scroll">
         <p class="font-heading text-[clamp(24px,3.5vw,36px)] leading-relaxed mb-8">
-            "The most powerful lever in business is not your product — it is the precision of the communication architecture behind it."
+            {{ __('Homepage philosophy quote') }}
         </p>
         <span class="text-xs uppercase tracking-widest text-grey font-semibold">
             — Efe Yalabıkoğlu
@@ -173,11 +174,11 @@
         <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 reveal-on-scroll gap-4">
             <div>
                 <h2 class="font-heading text-3xl md:text-4xl font-semibold tracking-tight">
-                    Client Voices
+                    {{ __('Client Voices') }}
                 </h2>
             </div>
-            <a href="{{ route('home') }}/case-studies" class="text-xs uppercase tracking-widest font-bold border-b border-ink pb-1 hover:opacity-60 transition-opacity">
-                View Full Case Studies →
+            <a href="{{ locale_route('case-studies') }}" class="text-xs uppercase tracking-widest font-bold border-b border-ink pb-1 hover:opacity-60 transition-opacity">
+                {{ __('View Full Case Studies →') }}
             </a>
         </div>
 
