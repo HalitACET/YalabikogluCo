@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Vision & Values — Yalabikoglu & Co.')
+@section('title', (page_meta('vision')?->meta_title ?: 'Vision & Values') . ' — Yalabikoglu & Co.')
+@section('meta_description', page_meta('vision')?->meta_description)
 
 @section('content')
 
@@ -10,14 +11,14 @@
         <div class="flex items-center space-x-3 mb-6 reveal-on-scroll">
             <span class="status-dot"></span>
             <span class="text-[10px] uppercase tracking-widest font-semibold text-bone/60">
-                Philosophical Mandate
+                {{ __('Philosophical Mandate') }}
             </span>
         </div>
         <h1 class="font-heading text-[clamp(36px,5.5vw,72px)] tracking-tight leading-[1.08] font-semibold text-bone mb-6 reveal-on-scroll">
-            Vision & Values
+            {{ __('Vision & Values') }}
         </h1>
         <p class="text-base text-body-text-invert leading-relaxed max-w-2xl reveal-on-scroll">
-            Strategic Intent — the governing principles behind every advisory engagement, institutional partnership, and executive intervention.
+            {{ __('Vision page dek') }}
         </p>
     </div>
 </section>
@@ -26,17 +27,17 @@
 <section class="py-24 px-6 md:px-12 bg-bone text-ink border-b border-hairline">
     <div class="max-w-4xl mx-auto reveal-on-scroll">
         <h2 class="text-grey text-[10px] font-bold uppercase tracking-widest mb-8">
-            The Mandate
+            {{ __('The Mandate') }}
         </h2>
         <p class="font-heading text-2xl md:text-3xl font-semibold mb-8 leading-snug">
-            A global market where strategic intellect is never diminished by suboptimal communication.
+            {{ __('A global market where strategic intellect is never diminished by suboptimal communication.') }}
         </p>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm text-body-text leading-relaxed font-sans mt-12">
             <p>
-                Communication friction represents a silent tax on executive leadership. When institutional ideas, corporate strategies, or governance models are obscured by sub-optimal phrasing, uncalibrated presence, or structural misalignment, strategic value is lost.
+                {{ __('Mandate paragraph one') }}
             </p>
             <p>
-                Our mandate is the absolute elimination of this friction. We build the architecture that allows executive intent to translate directly into market authority, establishing a standard where clarity is not merely a preference, but the foundation of trust.
+                {{ __('Mandate paragraph two') }}
             </p>
         </div>
     </div>
@@ -46,12 +47,12 @@
 <section class="py-24 px-6 md:px-12 bg-bone text-ink border-b border-hairline">
     <div class="max-w-4xl mx-auto">
         <h2 class="text-grey text-[10px] font-bold uppercase tracking-widest mb-16 reveal-on-scroll">
-            Core Values
+            {{ __('Core Values') }}
         </h2>
         
         @if($values->isEmpty())
             <div class="py-12 border-t border-hairline text-center text-grey">
-                <p>No core values published in database. Please run seeders.</p>
+                <p>{{ __('No core values published in database. Please run seeders.') }}</p>
             </div>
         @else
             <div class="flex flex-col border-t border-hairline">
@@ -82,13 +83,13 @@
 <section class="py-24 px-6 md:px-12 bg-bone text-ink">
     <div class="max-w-4xl mx-auto reveal-on-scroll mb-16">
         <h2 class="text-grey text-[10px] font-bold uppercase tracking-widest mb-8">
-            Macro Vision
+            {{ __('Macro Vision') }}
         </h2>
         <h3 class="font-heading text-2xl font-semibold mb-6 leading-snug">
-            The Institutional Ripple Effect
+            {{ __('The Institutional Ripple Effect') }}
         </h3>
         <p class="text-sm md:text-base text-body-text leading-relaxed font-sans">
-            Advisory relationships are not isolated events. The positioning of a founder, the calibration of a CEO, or the verbal axiology of a board ripple across entire organisations, shaping internal alignment, institutional culture, and market perception. Our work is designed for this systemic impact.
+            {{ __('Institutional ripple effect body') }}
         </p>
     </div>
 </section>
@@ -97,7 +98,7 @@
 <section class="bg-ink text-bone py-24 px-6 md:px-12 border-b border-hairline-invert text-center relative overflow-hidden">
     <div class="max-w-4xl mx-auto reveal-on-scroll">
         <p class="font-heading text-[clamp(24px,3.5vw,36px)] leading-relaxed mb-8">
-            "Success is not evaluated by the volume of engagements completed, but by the strategic doors opened for the leaders we advise."
+            {{ __('Vision page macro quote') }}
         </p>
         <span class="text-xs uppercase tracking-widest text-grey font-semibold">
             — Efe Yalabıkoğlu
@@ -106,6 +107,6 @@
 </section>
 
 <!-- Closing CTA (Override variant) -->
-<x-closing-cta heading="Shape Your Institutional Legacy" />
+<x-closing-cta :heading="__('Shape Your Institutional Legacy')" />
 
 @endsection

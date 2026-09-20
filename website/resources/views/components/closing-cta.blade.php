@@ -7,7 +7,7 @@
 @php
     $heading = $heading ?? __('Initiate an Advisory Relationship');
     $buttonText = $buttonText ?? __('Request Executive Briefing');
-    $link = $link ?? route('home') . '/contact';
+    $link = $link ?? locale_route('contact');
 @endphp
 
 <section class="bg-ink text-bone py-24 px-6 md:px-12 text-center relative overflow-hidden border-t border-hairline-invert">

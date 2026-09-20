@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Disciplines — Yalabikoglu & Co.')
+@section('title', (page_meta('disciplines')?->meta_title ?: 'Disciplines') . ' — Yalabikoglu & Co.')
+@section('meta_description', page_meta('disciplines')?->meta_description)
 
 @section('content')
 
@@ -15,14 +16,14 @@
         <div class="flex items-center space-x-3 mb-6 reveal-on-scroll">
             <span class="status-dot"></span>
             <span class="text-[10px] uppercase tracking-widest font-semibold text-bone/60">
-                The AXIO Method™
+                {{ __('AXIO Method') }}
             </span>
         </div>
         <h1 class="font-heading text-[clamp(36px,5.5vw,72px)] tracking-tight leading-[1.08] font-semibold text-bone mb-6 reveal-on-scroll">
-            Four Disciplines.<br>One Communication Architecture.
+            {!! __('Four Disciplines. One Communication Architecture.') !!}
         </h1>
         <p class="text-base text-body-text-invert leading-relaxed max-w-xl reveal-on-scroll">
-            Communication is rarely the constraint. Misalignment is.
+            {{ __('Communication is rarely the constraint. Misalignment is.') }}
         </p>
     </div>
 </section>
@@ -58,7 +59,7 @@
                         <div>
                             <a href="{{ route($routeName, ['slug' => $discipline->slug]) }}" 
                                class="text-xs uppercase tracking-widest font-bold border-b border-ink pb-1.5 hover:opacity-60 transition-opacity">
-                                Explore Discipline →
+                                {{ __('Explore Discipline →') }}
                             </a>
                         </div>
                     </div>
