@@ -25,6 +25,15 @@ class DatabaseSeeder extends Seeder
         // 1. Admin Kullanıcısını Oluştur
         $this->call(AdminUserSeeder::class);
 
+        // Content is seeded once. The production container runs this on every
+        // boot so a fresh database comes up usable, and re-running it must not
+        // duplicate every discipline, testimonial and metric.
+        if (Discipline::query()->exists()) {
+            $this->command->info('Content already present — skipping content seeders.');
+
+            return;
+        }
+
         $this->seedDisciplines();
         $this->seedAxioDimensions();
         $this->seedVisionValues();

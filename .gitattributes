@@ -1,0 +1,11 @@
+# Shell scripts must keep LF endings. A CRLF entrypoint.sh makes the container
+# fail at startup with an unreadable "no such file or directory" on the
+# shebang line, because the kernel treats the \r as part of the interpreter
+# path. Git on Windows would otherwise convert these on checkout.
+*.sh text eol=lf
+docker/entrypoint.sh text eol=lf
+
+# Same reasoning for files the container reads verbatim.
+Dockerfile text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf

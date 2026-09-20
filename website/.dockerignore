@@ -1,0 +1,26 @@
+# Build artefacts and local state that must not leak into the image.
+.env
+.env.*
+!.env.example
+node_modules
+vendor
+public/build
+public/hot
+public/storage
+storage/framework/cache/data/*
+storage/framework/sessions/*
+storage/framework/views/*
+storage/logs/*
+
+# Laravel's compiled package manifest, generated from the LOCAL install.
+# Copying it in makes the container look for dev-only providers that --no-dev
+# never installed, and boot dies on "Class Laravel\Pail\PailServiceProvider not found".
+bootstrap/cache
+database/*.sqlite*
+tests
+phpunit.xml
+.phpunit.result.cache
+.git
+.github
+Dockerfile
+.dockerignore
