@@ -33,13 +33,18 @@
         @else
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
                 @foreach($metrics as $metric)
-                    <div class="reveal-on-scroll p-4">
-                        <span class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight block mb-2">
-                            {{ $metric->value }}
-                        </span>
-                        <span class="text-[10px] uppercase tracking-widest text-grey font-semibold block">
+                    <div class="reveal-on-scroll p-4 flex flex-col items-center">
+                        <span class="text-[10px] uppercase tracking-widest text-grey font-bold block mb-3">
                             {{ $metric->translate()?->label }}
                         </span>
+                        <span class="font-heading text-xl md:text-2xl font-semibold tracking-tight block leading-tight">
+                            {{ $metric->value }}
+                        </span>
+                        @if($metric->translate()?->detail)
+                            <span class="text-xs text-body-text leading-relaxed block mt-3 max-w-[22ch]">
+                                {{ $metric->translate()->detail }}
+                            </span>
+                        @endif
                     </div>
                 @endforeach
             </div>

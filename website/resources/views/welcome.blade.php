@@ -44,9 +44,19 @@
         </div>
 
         <!-- Main Heading -->
-        <h1 class="font-heading text-[clamp(38px,6.2vw,84px)] tracking-tight leading-[1.05] font-semibold text-bone mb-8 reveal-on-scroll">
+        <h1 class="font-heading text-[clamp(38px,6.2vw,84px)] tracking-tight leading-[1.05] font-semibold text-bone mb-6 reveal-on-scroll">
             {!! __('Transform the way you communicate, lead & grow') !!}
         </h1>
+
+        <!-- Supporting copy -->
+        <div class="max-w-2xl space-y-4 mb-10 reveal-on-scroll">
+            <p class="text-base md:text-lg text-body-text-invert leading-relaxed">
+                {{ __('Hero dek one') }}
+            </p>
+            <p class="text-sm md:text-base text-body-text-invert leading-relaxed">
+                {{ __('Hero dek two') }}
+            </p>
+        </div>
 
         <!-- Hero Action Buttons -->
         <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 reveal-on-scroll">
@@ -65,13 +75,18 @@
 <section class="border-b border-hairline py-20 px-6 md:px-12 bg-bone text-ink">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
         @foreach($metrics as $metric)
-            <div class="reveal-on-scroll flex flex-col space-y-4">
-                <span class="font-heading text-[clamp(48px,5vw,72px)] font-semibold leading-none tracking-tight">
-                    {{ $metric->value }}
-                </span>
-                <span class="text-[10px] text-grey uppercase tracking-widest leading-relaxed max-w-xs font-semibold">
+            <div class="reveal-on-scroll flex flex-col space-y-3">
+                <span class="text-[10px] text-grey uppercase tracking-widest font-bold">
                     {{ $metric->translate()?->label }}
                 </span>
+                <span class="font-heading text-2xl md:text-3xl font-semibold leading-tight tracking-tight">
+                    {{ $metric->value }}
+                </span>
+                @if($metric->translate()?->detail)
+                    <span class="text-xs text-body-text leading-relaxed max-w-xs">
+                        {{ $metric->translate()->detail }}
+                    </span>
+                @endif
             </div>
         @endforeach
     </div>
@@ -85,7 +100,7 @@
         <div class="reveal-on-scroll">
             <div class="relative aspect-[3/4] overflow-hidden bg-ink">
                 <img src="{{ asset('images/efe-portrait.jpg') }}"
-                     alt="{{ __('Efe Yalabikoglu, founder and principal advisor') }}" 
+                     alt="{{ __('Efe Yalabikoglu, co-founder of Yalabikoglu & Co.') }}" 
                      class="w-full h-full object-cover grayscale-img" />
             </div>
         </div>
@@ -97,11 +112,38 @@
                 Efe Yalabikoglu
             </h2>
             <p class="text-xs text-grey uppercase tracking-widest font-semibold leading-none">
-                {{ __('Founder & Principal Advisor') }}
+                {{ __('Co-Founder') }}
             </p>
             <div class="h-px bg-hairline w-12"></div>
             <p class="text-base text-body-text leading-relaxed font-sans max-w-xl">
-                {{ __('Efe Yalabikoglu is an executive presence and communication positioning advisor.') }}
+                {{ __('Profile lead') }}
+            </p>
+            <p class="text-sm text-body-text leading-relaxed font-sans max-w-xl">
+                {{ __('Profile experience') }}
+            </p>
+        </div>
+    </div>
+
+    {{-- The rest of the profile runs full width below the portrait: at this
+         length it reads as an essay, not as a caption beside a photograph. --}}
+    <div class="max-w-7xl mx-auto mt-16 md:mt-20">
+        <div class="max-w-3xl space-y-6 text-sm md:text-base text-body-text leading-relaxed font-sans reveal-on-scroll">
+            <p>{{ __('Profile approach') }}</p>
+            <p>{{ __('Profile focus') }}</p>
+            <p>{{ __('Profile scope') }}</p>
+            <p>{{ __('Profile current') }}</p>
+        </div>
+
+        <!-- Where the method comes from -->
+        <div class="max-w-3xl mt-14 pt-10 border-t border-hairline reveal-on-scroll">
+            <p class="font-heading text-xl md:text-2xl font-semibold leading-snug mb-5">
+                {{ __('Profile axio origin') }}
+            </p>
+            <p class="font-heading text-base md:text-lg italic text-grey leading-relaxed mb-5">
+                {{ __('Profile axio negation') }}
+            </p>
+            <p class="text-sm md:text-base text-body-text leading-relaxed font-sans">
+                {{ __('Profile axio definition') }}
             </p>
         </div>
     </div>

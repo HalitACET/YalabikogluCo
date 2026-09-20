@@ -640,60 +640,83 @@ class DatabaseSeeder extends Seeder
     // -----------------------------------------------------------------
     private function seedMetrics(): void
     {
+        /*
+         * Proof points, not performance figures.
+         *
+         * The site previously claimed "200+ C-Suite executives advised",
+         * "15+ jurisdictions reached" and a "98% client retention rate". The
+         * practice was founded in 2026 and none of those could be
+         * substantiated, which makes them the first thing a serious prospect
+         * would doubt. These describe the experience that actually exists.
+         */
         $metrics = [
             [
-                'value' => '200+',
+                'value' => 'Europe',
                 'placement' => 'both',
                 'sort_order' => 1,
-                'labels' => [
-                    'en' => 'C-Suite & High-Performing Executives Advised',
-                    'lv' => 'Konsultēti augstākā līmeņa un augstas veiktspējas vadītāji',
-                    'fr' => 'Dirigeants et cadres à haute performance accompagnés',
-                    'ru' => 'Руководителей высшего звена и топ-менеджеров проконсультировано',
+                'translations' => [
+                    'en' => [
+                        'label' => 'International Experience',
+                        'detail' => 'Entrepreneurship · Journalism · European Affairs · International Projects',
+                    ],
+                    'lv' => [
+                        'label' => 'Starptautiska pieredze',
+                        'detail' => 'Uzņēmējdarbība · žurnālistika · Eiropas lietas · starptautiski projekti',
+                    ],
+                    'fr' => [
+                        'label' => 'Expérience internationale',
+                        'detail' => 'Entrepreneuriat · journalisme · affaires européennes · projets internationaux',
+                    ],
+                    'ru' => [
+                        'label' => 'Международный опыт',
+                        'detail' => 'Предпринимательство · журналистика · европейские дела · международные проекты',
+                    ],
                 ],
             ],
             [
-                'value' => '15+',
+                'value' => 'Multiple markets & institutions',
                 'placement' => 'both',
                 'sort_order' => 2,
-                'labels' => [
-                    'en' => 'Jurisdictions & Markets Reached',
-                    'lv' => 'Sasniegtas jurisdikcijas un tirgi',
-                    'fr' => 'Juridictions et marchés couverts',
-                    'ru' => 'Юрисдикций и рынков охвачено',
+                'translations' => [
+                    'en' => [
+                        'label' => 'Cross-Border Perspective',
+                        'detail' => 'Experience across different professional, cultural and institutional environments',
+                    ],
+                    'lv' => [
+                        'label' => 'Pārrobežu skatījums',
+                        'detail' => 'Pieredze dažādās profesionālās, kultūras un institucionālās vidēs',
+                    ],
+                    'fr' => [
+                        'label' => 'Perspective transfrontalière',
+                        'detail' => 'Une expérience acquise dans des environnements professionnels, culturels et institutionnels différents',
+                    ],
+                    'ru' => [
+                        'label' => 'Трансграничная перспектива',
+                        'detail' => 'Опыт работы в разных профессиональных, культурных и институциональных средах',
+                    ],
                 ],
             ],
             [
-                'value' => '6+',
-                'placement' => 'home',
+                'value' => '4 core disciplines',
+                'placement' => 'both',
                 'sort_order' => 3,
-                'labels' => [
-                    'en' => 'Years Applied Leadership Experience',
-                    'lv' => 'Gadi praktiskas vadības pieredzes',
-                    'fr' => 'Années d’expérience appliquée en leadership',
-                    'ru' => 'Лет прикладного опыта лидерства',
-                ],
-            ],
-            [
-                'value' => '98%',
-                'placement' => 'case_studies',
-                'sort_order' => 4,
-                'labels' => [
-                    'en' => 'Client Retention & Mandate Renewal Rate',
-                    'lv' => 'Klientu noturēšanas un mandātu atjaunošanas rādītājs',
-                    'fr' => 'Taux de fidélisation et de renouvellement des mandats',
-                    'ru' => 'Уровень удержания клиентов и продления мандатов',
-                ],
-            ],
-            [
-                'value' => '5.0',
-                'placement' => 'case_studies',
-                'sort_order' => 5,
-                'labels' => [
-                    'en' => 'Average Strategic Satisfaction Rating',
-                    'lv' => 'Vidējais stratēģiskās apmierinātības vērtējums',
-                    'fr' => 'Note moyenne de satisfaction stratégique',
-                    'ru' => 'Средняя оценка стратегической удовлетворённости',
+                'translations' => [
+                    'en' => [
+                        'label' => 'Advisory Focus',
+                        'detail' => 'Strategic Communication · Executive Presence · Leadership Positioning · International Advisory',
+                    ],
+                    'lv' => [
+                        'label' => 'Konsultāciju fokuss',
+                        'detail' => 'Stratēģiskā komunikācija · vadītāja klātbūtne · vadības pozicionēšana · starptautiskas konsultācijas',
+                    ],
+                    'fr' => [
+                        'label' => 'Domaine de conseil',
+                        'detail' => 'Communication stratégique · présence exécutive · positionnement de leadership · conseil international',
+                    ],
+                    'ru' => [
+                        'label' => 'Фокус консультирования',
+                        'detail' => 'Стратегическая коммуникация · лидерское присутствие · лидерское позиционирование · международные консультации',
+                    ],
                 ],
             ],
         ];
@@ -706,11 +729,8 @@ class DatabaseSeeder extends Seeder
                 'is_published' => true,
             ]);
 
-            foreach ($mData['labels'] as $locale => $label) {
-                $m->translations()->create([
-                    'locale' => $locale,
-                    'label' => $label,
-                ]);
+            foreach ($mData['translations'] as $locale => $translation) {
+                $m->translations()->create(['locale' => $locale] + $translation);
             }
         }
     }

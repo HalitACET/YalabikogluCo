@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 
-#[Fillable(['locale', 'label'])]
+#[Fillable(['locale', 'label', 'detail'])]
 class MetricTranslation extends Model
 {
 }
