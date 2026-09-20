@@ -22,3 +22,6 @@
 .vscode/
 .DS_Store
 Thumbs.db
+
+# Local dev launch config (machine-specific absolute paths)
+.claude/
