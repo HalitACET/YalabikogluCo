@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use Database\Seeders\DatabaseSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Schema;
 use Tests\TestCase;
 
 /**
@@ -131,6 +132,24 @@ class PublicSiteTest extends TestCase
 
         foreach ($expectations as $url => $needle) {
             $this->get($url)->assertSee($needle, false);
+        }
+    }
+
+    public function test_no_table_exists_for_storing_visitor_personal_data(): void
+    {
+        // The site is built so that visitor data is never received in the
+        // first place. Schema that could hold it was removed rather than
+        // merely left unused, so there is nothing to leak, export or erase.
+        $this->assertFalse(
+            Schema::hasTable('contact_submissions'),
+            'contact_submissions is back. The site is not meant to store visitor data at all.'
+        );
+
+        foreach (['name', 'email', 'ip_hash', 'consent_at'] as $column) {
+            $this->assertFalse(
+                Schema::hasColumn('pages', $column),
+                "A visitor data column ({$column}) appeared on a content table."
+            );
         }
     }
 
