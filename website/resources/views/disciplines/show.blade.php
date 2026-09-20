@@ -7,15 +7,15 @@
 
 @php
     $slug = $discipline->slug;
-    // Locally hosted placeholders. Editors can override any of these by
+    // Locally hosted fallbacks. Editors can override any of these by
     // attaching an image to the discipline in the admin panel. They are served
     // from our own origin on purpose — a remote image URL would hand the
     // visitor's IP address to a third party on every page view.
     $images = [
-        'executive-presence' => asset('images/placeholders/discipline-executive-presence.jpg'),
-        'executive-positioning' => asset('images/placeholders/discipline-executive-positioning.jpg'),
-        'self-mastery' => asset('images/placeholders/discipline-self-mastery.jpg'),
-        'strategic-messaging' => asset('images/placeholders/discipline-strategic-messaging.jpg'),
+        'executive-presence' => asset('images/disciplines/executive-presence.jpg'),
+        'executive-positioning' => asset('images/disciplines/executive-positioning.jpg'),
+        'self-mastery' => asset('images/disciplines/self-mastery.jpg'),
+        'strategic-messaging' => asset('images/disciplines/strategic-messaging.jpg'),
     ];
     $heroImage = $discipline->getFirstMediaUrl('images') ?: ($images[$slug] ?? $images['executive-presence']);
 

@@ -11,6 +11,20 @@
     <!-- SEO hreflang tags -->
     @hreflang
 
+    {{-- Favicon and social preview. Served from our own origin like everything
+         else, so sharing a link still leaks nothing to a third party. --}}
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/brand/favicon-32.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/brand/favicon-180.png') }}">
+
+    <meta property="og:site_name" content="Yalabikoglu &amp; Co.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="{{ app()->getLocale() }}">
+    <meta property="og:title" content="@yield('title', 'Yalabikoglu & Co.')">
+    <meta property="og:description" content="@yield('meta_description', '')">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:image" content="{{ asset('images/hero-home.jpg') }}">
+    <meta name="twitter:card" content="summary_large_image">
+
     {{-- Fonts are self-hosted (see vite.config.js). No request ever leaves
          this origin, so no third party sees a visitor's IP address. --}}
     @fonts

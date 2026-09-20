@@ -27,8 +27,8 @@
 <section class="relative min-h-[90vh] flex items-center px-6 md:px-12 py-24 bg-ink text-bone border-b border-hairline-invert overflow-hidden">
     <!-- Background B&W Photo with Dark Overlay -->
     <div class="absolute inset-0 z-0">
-        <img src="{{ asset('images/placeholders/hero-home.jpg') }}" 
-             alt="Executive Presence background" 
+        <img src="{{ asset('images/hero-home.jpg') }}"
+             alt="" aria-hidden="true" 
              class="w-full h-full object-cover filter grayscale contrast-125" />
         <div class="absolute inset-0 bg-ink/75 pointer-events-none"></div>
     </div>
@@ -84,8 +84,8 @@
         <!-- Profile Portrait -->
         <div class="reveal-on-scroll">
             <div class="relative aspect-[3/4] overflow-hidden bg-ink">
-                <img src="{{ asset('images/placeholders/profile-portrait.jpg') }}" 
-                     alt="Efe Yalabikoglu" 
+                <img src="{{ asset('images/efe-portrait.jpg') }}"
+                     alt="{{ __('Efe Yalabikoglu, founder and principal advisor') }}" 
                      class="w-full h-full object-cover grayscale-img" />
             </div>
         </div>
