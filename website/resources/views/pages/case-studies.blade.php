@@ -49,8 +49,19 @@
 
 <!-- Featured Case Study ( Thomas M., Copenhagen ) -->
 @if($featuredTestimonial)
-<section class="bg-ink text-bone py-24 px-6 md:px-12 border-b border-hairline-invert text-center relative overflow-hidden">
-    <div class="max-w-4xl mx-auto reveal-on-scroll">
+{{--
+    Same treatment as the discipline heroes and the vision page quote: a
+    darkened photograph behind the text rather than a flat ink ground.
+--}}
+<section class="bg-ink text-bone py-32 md:py-40 px-6 md:px-12 border-b border-hairline-invert text-center relative overflow-hidden flex items-center min-h-[420px]">
+    <div class="absolute inset-0 z-0">
+        <img src="{{ asset('images/advisory-session.jpg') }}"
+             alt="" aria-hidden="true"
+             class="w-full h-full object-cover filter grayscale contrast-125 opacity-32" />
+        <div class="absolute inset-0 bg-ink/80 pointer-events-none"></div>
+    </div>
+
+    <div class="max-w-4xl mx-auto reveal-on-scroll relative z-10">
         <span class="text-[10px] text-grey uppercase tracking-widest font-bold block mb-8">{{ __('Featured Case Study') }}</span>
         <p class="font-heading text-[clamp(20px,3vw,32px)] leading-relaxed italic mb-8">
             "{{ $featuredTestimonial->translate()?->quote }}"
