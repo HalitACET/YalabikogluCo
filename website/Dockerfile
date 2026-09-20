@@ -55,10 +55,12 @@ RUN composer install \
 
 COPY . .
 
-# .dockerignore excludes bootstrap/cache so the local package manifest (built
-# against dev dependencies) never reaches the image. package:discover needs the
-# directory to exist to write a fresh one.
-RUN mkdir -p bootstrap/cache     && composer dump-autoload --no-dev --optimize --classmap-authoritative
+# package:discover boots the framework, which wants somewhere to compile views
+# and a place for the package manifest. Git does not track empty directories and
+# .dockerignore strips the contents of these anyway, so create them here rather
+# than rely on whatever happens to exist in the build context. Without this the
+# build fails on a clean clone with "Please provide a valid cache path".
+RUN mkdir -p bootstrap/cache              storage/framework/views              storage/framework/cache/data              storage/framework/sessions              storage/logs     && composer dump-autoload --no-dev --optimize --classmap-authoritative
 
 # ---------------------------------------------------------------------------
 # Stage 3: front-end assets
