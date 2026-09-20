@@ -49,6 +49,12 @@ $publicRoutes = static function (): void {
     Route::get('axio-method', [PageController::class, 'axioMethod'])->name('axio-method');
     Route::get('vision', [PageController::class, 'vision'])->name('vision');
     Route::get('case-studies', [PageController::class, 'caseStudies'])->name('case-studies');
+
+    // Contact — GET only by design. The page carries no form, so there is
+    // deliberately no POST route and no submission handling.
+    Route::get('contact', [PageController::class, 'contact'])->name('contact');
+
+    Route::get('privacy', [PageController::class, 'privacy'])->name('privacy');
 };
 
 // ---------------------------------------------------------------------------

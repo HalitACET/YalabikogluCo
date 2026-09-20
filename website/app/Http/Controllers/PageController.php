@@ -44,4 +44,38 @@ class PageController extends Controller
 
         return view('pages.case-studies', compact('metrics', 'featuredTestimonial', 'testimonials'));
     }
+
+    /**
+     * Contact page.
+     *
+     * Intentionally a GET-only, form-free page. Visitors contact the practice
+     * through their own mail client or an external platform, so the site never
+     * collects, transmits, or stores personal data and stays outside the scope
+     * of KVKK/GDPR data-controller obligations. There is deliberately no POST
+     * counterpart to this action.
+     */
+    public function contact()
+    {
+        return view('pages.contact', [
+            'email' => config('contact.email'),
+            'phone' => config('contact.phone'),
+            'base' => config('contact.base'),
+            'social' => config('contact.social', []),
+        ]);
+    }
+
+    /**
+     * Privacy page.
+     *
+     * Describes what the site does with visitor data, which is nothing. If the
+     * site ever starts collecting something — a form, an analytics script, a
+     * third-party embed, a session cookie — this page must be updated in the
+     * same change.
+     */
+    public function privacy()
+    {
+        return view('pages.privacy', [
+            'email' => config('contact.email'),
+        ]);
+    }
 }
