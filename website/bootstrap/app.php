@@ -4,40 +4,44 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Middleware\SubstituteBindings;
+use Illuminate\Support\Facades\Route;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
-        web: __DIR__.'/../routes/web.php',
+        /*
+         * The public site is registered WITHOUT the 'web' middleware group.
+         *
+         * It has no forms, no login, and nothing to remember between requests,
+         * so it needs no session — and a session would set the laravel-session
+         * and XSRF-TOKEN cookies on every visitor, which the privacy page
+         * promises does not happen.
+         *
+         * Note what this deliberately does NOT do: strip those middleware from
+         * the 'web' group itself. Livewire registers POST /livewire/update in
+         * the 'web' group, so removing StartSession from it leaves every
+         * Livewire request without a session — which silently breaks the
+         * Filament admin login, because Auth::login() has nowhere to persist.
+         * Leave the group alone and opt the public routes out instead.
+         *
+         * If a public route ever needs a session or a POST form, give that one
+         * route the 'web' group — and update the privacy page to match.
+         */
+        using: function () {
+            Route::middleware([SubstituteBindings::class])
+                ->group(base_path('routes/web.php'));
+
+            // Passing `using` replaces the default route registration, which
+            // is where the health endpoint would otherwise be defined.
+            Route::get('/up', function () {
+                return response('OK');
+            })->name('health');
+        },
         commands: __DIR__.'/../routes/console.php',
-        health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
             'set.locale' => \App\Http\Middleware\SetLocale::class,
-        ]);
-
-        /*
-         * The public site is stateless by design.
-         *
-         * It has no forms, no login, and nothing to remember between requests,
-         * so it does not need a session — and a session would mean setting the
-         * laravel-session and XSRF-TOKEN cookies on every visitor. Stripping
-         * these from the 'web' group means the public pages set NO cookies at
-         * all, which is what the privacy page promises.
-         *
-         * The Filament admin panel is unaffected: it declares its own complete
-         * middleware stack (including StartSession, EncryptCookies and
-         * PreventRequestForgery) in AdminPanelProvider, so /admin keeps working.
-         *
-         * If a public route ever needs a session or a POST form, re-add these
-         * for that route only — and update the privacy page to match.
-         */
-        $middleware->web(remove: [
-            \Illuminate\Cookie\Middleware\EncryptCookies::class,
-            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
-            \Illuminate\Session\Middleware\StartSession::class,
-            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-            \Illuminate\Foundation\Http\Middleware\PreventRequestForgery::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
