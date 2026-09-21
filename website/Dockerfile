@@ -33,6 +33,16 @@ RUN install-php-extensions \
         bcmath \
         opcache
 
+# The official image grants the frankenphp binary cap_net_bind_service so it
+# can bind ports 80/443. Platforms that run containers with every capability
+# dropped (Render does) refuse to exec a binary carrying file capabilities, and
+# the container dies with "exec: frankenphp: Operation not permitted". We listen
+# on the unprivileged $PORT, so strip the capability. Copying the file drops its
+# extended attributes, which is where the capability lives.
+RUN cp /usr/local/bin/frankenphp /tmp/frankenphp \
+    && mv /tmp/frankenphp /usr/local/bin/frankenphp \
+    && chmod 755 /usr/local/bin/frankenphp
+
 # ---------------------------------------------------------------------------
 # Stage 2: PHP dependencies
 # ---------------------------------------------------------------------------
@@ -98,8 +108,10 @@ RUN mkdir -p storage/framework/cache/data \
              storage/framework/views \
              storage/logs \
              bootstrap/cache \
-    && chown -R www-data:www-data storage bootstrap/cache \
     && chmod -R 775 storage bootstrap/cache
+# Left owned by root, the user the container runs as. Handing them to www-data
+# only works while root keeps CAP_DAC_OVERRIDE; on a platform that drops every
+# capability, root cannot write to directories it does not own.
 
 COPY docker/entrypoint.sh /usr/local/bin/entrypoint
 RUN chmod +x /usr/local/bin/entrypoint
