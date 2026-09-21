@@ -43,6 +43,13 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'set.locale' => \App\Http\Middleware\SetLocale::class,
         ]);
+
+        // The host's load balancer terminates TLS and forwards plain HTTP with
+        // X-Forwarded-Proto: https. Without trusting it, Laravel thinks every
+        // request is HTTP and emits http:// asset URLs, which browsers block on
+        // an https:// page — the site then renders as unstyled HTML. The app is
+        // only reachable through that balancer, so trusting any proxy is safe.
+        $middleware->trustProxies(at: '*');
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(
