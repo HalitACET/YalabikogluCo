@@ -52,11 +52,12 @@ Two things, both worth knowing before launch:
 
 ## 3. Set the environment variables
 
-`render.yaml` fills in the non-secret ones and generates `APP_KEY`. Set the
-rest under **Environment**:
+`render.yaml` fills in the non-secret ones. Set the rest under
+**Environment**:
 
 | Variable | Value |
 | --- | --- |
+| `APP_KEY` | run `php artisan key:generate --show` and paste the whole value, `base64:` prefix included |
 | `APP_URL` | the service URL, e.g. `https://yalabikoglu.onrender.com` |
 | `DB_URL` | the Neon connection string from step 1 |
 | `ADMIN_EMAIL` | admin panel login |
