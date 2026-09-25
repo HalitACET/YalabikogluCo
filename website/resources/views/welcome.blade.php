@@ -128,7 +128,10 @@
     {{-- The rest of the profile runs full width below the portrait: at this
          length it reads as an essay, not as a caption beside a photograph. --}}
     <div class="max-w-7xl mx-auto mt-16 md:mt-20">
-        <div class="max-w-3xl space-y-6 text-sm md:text-base text-body-text leading-relaxed font-sans reveal-on-scroll">
+        {{-- Two columns rather than one. As a single measure this biography ran
+             for most of a screen and read as an afterthought below the
+             portrait; split, it holds together as one block. --}}
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 lg:gap-x-20 gap-y-6 text-sm md:text-base text-body-text leading-relaxed font-sans reveal-on-scroll">
             <p>{{ __('Profile approach') }}</p>
             <p>{{ __('Profile focus') }}</p>
             <p>{{ __('Profile scope') }}</p>
@@ -136,7 +139,7 @@
         </div>
 
         <!-- Where the method comes from -->
-        <div class="max-w-3xl mt-14 pt-10 border-t border-hairline reveal-on-scroll">
+        <div class="max-w-3xl mt-16 pt-10 border-t border-hairline reveal-on-scroll">
             <p class="font-heading text-xl md:text-2xl font-semibold leading-snug mb-5">
                 {{ __('Profile axio origin') }}
             </p>

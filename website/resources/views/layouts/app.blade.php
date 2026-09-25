@@ -46,12 +46,15 @@
             menuOpen: false 
         }"
         @scroll.window="scrolled = window.scrollY > 50"
-        :class="scrolled ? 'bg-ink text-bone py-4 border-b border-hairline-invert' : 'bg-transparent text-ink py-6'"
+        {{-- Every page opens on a dark section, so the resting header is
+             transparent with light text and sits over it. On scroll it gains
+             its own ink background. --}}
+        :class="scrolled ? 'bg-ink text-bone py-4 border-b border-hairline-invert' : 'bg-transparent text-bone py-6'"
         class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out border-b border-transparent"
     >
         <div class="w-full px-6 md:px-12 flex justify-between items-center">
             <!-- Wordmark -->
-            <a href="{{ locale_route('home') }}" class="font-heading text-lg md:text-xl tracking-wider font-semibold uppercase transition-colors whitespace-nowrap">
+            <a href="{{ locale_route('home') }}" class="font-heading text-lg md:text-xl tracking-wider font-semibold uppercase transition-colors whitespace-nowrap xl:mr-14">
                 Yalabikoglu & Co.
             </a>
 
@@ -66,7 +69,7 @@
                 $isVision = request()->is('vision*') || request()->is('*/vision*');
                 $isContact = request()->is('contact*') || request()->is('*/contact*');
             @endphp
-            <nav class="hidden lg:flex items-center space-x-8 text-xs uppercase tracking-widest font-medium">
+            <nav class="hidden xl:flex items-center space-x-6 text-xs uppercase tracking-widest font-medium">
                 <a href="{{ locale_route('home') }}" class="transition-opacity whitespace-nowrap {{ $isHome ? 'opacity-55' : 'opacity-100 hover:opacity-55' }}">
                     {{ __('Home') }}
                 </a>
@@ -88,9 +91,9 @@
             </nav>
 
             <!-- Language Switcher & Hamburger -->
-            <div class="flex items-center space-x-6 lg:ml-12">
+            <div class="flex items-center space-x-6 xl:ml-12">
                 <!-- Desktop Language Switcher -->
-                <div class="hidden md:flex items-center space-x-2 text-[10px] uppercase tracking-widest font-semibold">
+                <div class="hidden xl:flex items-center space-x-2 text-[10px] uppercase tracking-widest font-semibold">
                     @foreach(config('locales.supported', ['en' => 'English']) as $lang => $name)
                         <a href="{{ app(\App\Support\LocaleUrl::class)->for($lang) }}" 
                            class="transition-opacity whitespace-nowrap {{ $currentLocale === $lang ? 'opacity-100' : 'opacity-40 hover:opacity-100' }}">
@@ -103,7 +106,7 @@
                 <!-- Mobile Menu Button -->
                 <button 
                     @click="menuOpen = !menuOpen" 
-                    class="lg:hidden p-1 focus:outline-none"
+                    class="xl:hidden p-1 focus:outline-none"
                     aria-label="{{ __('Toggle menu') }}"
                 >
                     <svg class="w-6 h-6 current-color" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -123,7 +126,7 @@
             x-transition:leave="transition ease-in duration-200"
             x-transition:leave-start="opacity-100 translate-y-0"
             x-transition:leave-end="opacity-0 translate-y-4"
-            class="fixed inset-0 z-40 bg-ink text-bone flex flex-col justify-between p-8 pt-24 lg:hidden"
+            class="fixed inset-0 z-40 bg-ink text-bone flex flex-col justify-between p-8 pt-24 xl:hidden"
             style="display: none;"
         >
             <nav class="flex flex-col space-y-6 text-2xl font-heading tracking-wide">
@@ -153,7 +156,7 @@
     </header>
 
     <!-- Main Content Area -->
-    <main class="flex-grow pt-24">
+    <main class="flex-grow">
         @yield('content')
     </main>
 
