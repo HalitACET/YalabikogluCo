@@ -161,7 +161,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-ink text-bone border-t border-hairline-invert py-16 px-6 md:px-12 mt-auto">
+    <footer class="bg-ink text-bone border-t border-hairline-invert pt-16 pb-28 px-6 md:px-12 mt-auto">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
             <!-- Brand Column -->
             <div class="md:col-span-2 flex flex-col space-y-4">
@@ -234,10 +234,22 @@
     </footer>
 
     <!-- Sticky Conversion Bar -->
+    {{-- The bar exists to catch someone mid-page. Once the footer is on screen
+         it has nothing left to offer — the same button is right above it — and
+         being fixed it would sit on top of the copyright line. So it stands
+         down as soon as the footer appears. --}}
     <div 
-        x-data="{ showBar: false }"
-        @scroll.window="showBar = window.scrollY > (window.innerHeight * 0.85)"
-        x-show="showBar"
+        x-data="{ scrolledEnough: false, footerVisible: false }"
+        x-init="
+            const footer = document.querySelector('footer');
+            if (footer && 'IntersectionObserver' in window) {
+                new IntersectionObserver(
+                    ([entry]) => footerVisible = entry.isIntersecting
+                ).observe(footer);
+            }
+        "
+        @scroll.window="scrolledEnough = window.scrollY > (window.innerHeight * 0.85)"
+        x-show="scrolledEnough && ! footerVisible"
         x-transition:enter="transition ease-out duration-500 transform"
         x-transition:enter-start="translate-y-full"
         x-transition:enter-end="translate-y-0"
