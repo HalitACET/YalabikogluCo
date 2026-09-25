@@ -161,7 +161,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-ink text-bone border-t border-hairline-invert pt-16 pb-28 px-6 md:px-12 mt-auto">
+    <footer class="bg-ink text-bone border-t border-hairline-invert py-16 px-6 md:px-12 mt-auto">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
             <!-- Brand Column -->
             <div class="md:col-span-2 flex flex-col space-y-4">
