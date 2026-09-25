@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DisciplineController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\SitemapController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,3 +84,13 @@ foreach ($nonDefaultLocales as $locale) {
         ->name("{$locale}.")
         ->group($publicRoutes);
 }
+
+// ---------------------------------------------------------------------------
+// Crawler files
+//
+// Registered once, outside the locale groups: there is no /lv/sitemap.xml.
+// Generated rather than served from public/ so the URLs inside them follow
+// whatever domain the site is answering on.
+// ---------------------------------------------------------------------------
+Route::get('sitemap.xml', [SitemapController::class, 'sitemap'])->name('sitemap');
+Route::get('robots.txt', [SitemapController::class, 'robots'])->name('robots');

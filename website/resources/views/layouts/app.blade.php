@@ -8,6 +8,11 @@
     <!-- SEO Meta Tags -->
     <meta name="description" content="@yield('meta_description', 'Premium executive presence and communication positioning advisory.')">
 
+    {{-- Canonical: tells search engines which address is the real one for this
+         page, so the same content reached by a different URL is not treated as
+         a duplicate. --}}
+    <link rel="canonical" href="{{ url()->current() }}">
+
     <!-- SEO hreflang tags -->
     @hreflang
 
